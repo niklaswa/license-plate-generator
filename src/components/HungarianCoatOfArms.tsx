@@ -21,7 +21,7 @@ export default function HungarianCoatOfArms({ scale = 1 }: HungarianCoatOfArmsPr
       }}
     >
       <img
-        src="/wappen/HR.svg"
+        src="/wappen/hr.svg"
         alt="Hungarian coat of arms"
         style={{
           width: '100%',
