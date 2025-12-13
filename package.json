@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "html-to-image": "^1.11.13",
+    "modern-screenshot": "^4.6.7",
     "next": "16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1"

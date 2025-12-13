@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
-import * as htmlToImage from 'html-to-image';
-import { GermanPlateConfig, GermanState, STATE_NAMES, PlateWidth, PlateSuffix, PlateStyle, EUCountry, EU_COUNTRY_NAMES } from '@/types/plate';
+import { domToPng } from 'modern-screenshot';
+import { GermanPlateConfig, GermanState, STATE_NAMES, PlateWidth, PlateSuffix, PlateStyle, EUCountry } from '@/types/plate';
 import LicensePlate from './LicensePlate';
 import { useTranslation, Language, LANGUAGE_NAMES, LANGUAGE_FLAGS, SUPPORTED_LANGUAGES } from '@/i18n';
 
@@ -170,7 +170,9 @@ export default function PlateGenerator() {
   const [plateTexture, setPlateTexture] = useState<string | null>(null);
   const [show3DPreview, setShow3DPreview] = useState(false);
   const [is3DEasterEgg, setIs3DEasterEgg] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const plateRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
 
   // Check for 3D easter egg in hash
   useEffect(() => {
@@ -214,13 +216,12 @@ export default function PlateGenerator() {
     
     const generateTexture = async () => {
       try {
-        const dataUrl = await htmlToImage.toPng(plateRef.current!, {
-          pixelRatio: 2,
-          cacheBust: true,
+        const dataUrl = await domToPng(plateRef.current!, {
+          scale: 2,
         });
         setPlateTexture(dataUrl);
       } catch (error) {
-        console.error('Failed to generate plate texture:', error);
+        console.debug('Failed to generate plate texture:', error);
       }
     };
     
@@ -236,61 +237,80 @@ export default function PlateGenerator() {
   const exportAsPNG = useCallback(async () => {
     if (!plateRef.current) return;
 
+    console.debug('[Export] Starting export...');
+    setIsExporting(true);
+    
     try {
-      // Get actual DOM dimensions of the plate
+      // Get actual DOM dimensions
       const domWidth = plateRef.current.offsetWidth;
       const domHeight = plateRef.current.offsetHeight;
+      console.debug('[Export] DOM dimensions:', { domWidth, domHeight });
       
-      // Use html-to-image to capture the element at high resolution
-      const dataUrl = await htmlToImage.toPng(plateRef.current, {
-        pixelRatio: 3, // Higher resolution for quality
-        cacheBust: true,
-        fetchRequestInit: {
-          mode: 'cors',
-        },
+      // Calculate export dimensions
+      const aspectRatio = domWidth / domHeight;
+      const exportWidth = 420;
+      const exportHeight = Math.round(exportWidth / aspectRatio);
+      console.debug('[Export] Export dimensions:', { exportWidth, exportHeight, aspectRatio });
+      
+      // Use modern-screenshot - Safari compatible
+      // First capture at original size, then resize
+      console.debug('[Export] Starting modern-screenshot conversion...');
+      const fullDataUrl = await domToPng(plateRef.current, {
+        scale: 3,
       });
-
-      // Load the image to resize it
+      console.debug('[Export] Full image captured, length:', fullDataUrl.length);
+      
+      // Load and resize
       const img = new Image();
-      img.onload = () => {
-        // Fixed width 420px, height based on actual DOM aspect ratio
-        const aspectRatio = domWidth / domHeight;
-        const exportWidth = 420;
-        const exportHeight = Math.round(exportWidth / aspectRatio);
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = reject;
+        img.src = fullDataUrl;
+      });
+      console.debug('[Export] Image loaded, resizing to 420px width...');
+      
+      // Create canvas at export size
+      const canvas = document.createElement('canvas');
+      canvas.width = exportWidth;
+      canvas.height = exportHeight;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        throw new Error('Failed to get canvas context');
+      }
+      
+      // Draw resized
+      ctx.drawImage(img, 0, 0, exportWidth, exportHeight);
+      const dataUrl = canvas.toDataURL('image/png');
+      console.debug('[Export] Resized image ready, length:', dataUrl.length);
 
-        // Create canvas at target size
-        const canvas = document.createElement('canvas');
-        canvas.width = exportWidth;
-        canvas.height = exportHeight;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+      // Generate filename
+      const isGermany = config.country === 'D';
+      let baseName: string;
+      if (isGermany) {
+        baseName = `${config.cityCode}${config.letters}${config.numbers}${config.suffix}`;
+      } else {
+        baseName = config.plateText || `${config.cityCode}${config.letters}${config.numbers}`;
+      }
+      const cleanName = baseName.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
+      const filename = `Plate${cleanName}.png`;
+      console.debug('[Export] Generated filename:', filename);
 
-        // Draw scaled image
-        ctx.drawImage(img, 0, 0, exportWidth, exportHeight);
-
-        // Generate filename: only letters and numbers, max 31 chars (+ .png = 35 total, well under 32+4)
-        const isGermany = config.country === 'D';
-        let baseName: string;
-        if (isGermany) {
-          baseName = `${config.cityCode}${config.letters}${config.numbers}${config.suffix}`;
-        } else {
-          baseName = config.plateText || `${config.cityCode}${config.letters}${config.numbers}`;
-        }
-        // Remove any non-alphanumeric characters and limit length
-        const cleanName = baseName.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
-        const filename = `Plate${cleanName}.png`;
-
-        // Download the resized image
-        const resizedDataUrl = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = resizedDataUrl;
-        link.click();
-      };
-      img.src = dataUrl;
+      // Download
+      console.debug('[Export] Creating download link...');
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      console.debug('[Export] Triggering download...');
+      link.click();
+      document.body.removeChild(link);
+      console.debug('[Export] Download complete!');
+      
+      setIsExporting(false);
     } catch (error) {
-      console.error('Export failed:', error);
+      console.debug('[Export] Export failed:', error);
       alert(t.exportFailed);
+      setIsExporting(false);
     }
   }, [config, t]);
 
@@ -683,13 +703,51 @@ export default function PlateGenerator() {
         <div className="text-center pb-8">
           <button
             onClick={exportAsPNG}
-            className="px-10 py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/40 text-lg"
+            disabled={isExporting}
+            className="px-10 py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-2xl shadow-lg shadow-purple-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/40 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2 mx-auto"
           >
-            📥 {t.exportPNG}
+            {isExporting ? (
+              <>
+                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Exportiere...
+              </>
+            ) : (
+              <>
+                📥 {t.exportPNG}
+              </>
+            )}
           </button>
           <p className="mt-3 text-sm text-white/70">
             Export: 420 × dynamisch px
           </p>
+        </div>
+
+        {/* USB Installation Guide */}
+        <div className="glass-card rounded-2xl shadow-2xl p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white flex items-center gap-2">
+            {t.usbInstallTitle}
+          </h2>
+          <div className="space-y-3 text-gray-700 dark:text-gray-300">
+            <div className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold">1</span>
+              <p>{t.usbInstallStep1}</p>
+            </div>
+            <div className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold">2</span>
+              <p>{t.usbInstallStep2}</p>
+            </div>
+            <div className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold">3</span>
+              <p>{t.usbInstallStep3}</p>
+            </div>
+            <div className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold">4</span>
+              <p>{t.usbInstallStep4}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

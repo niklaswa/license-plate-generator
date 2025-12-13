@@ -295,6 +295,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
               borderRadius: `${8 * scale}px`,
               fontFamily: 'EuroPlate, sans-serif',
               transformStyle: 'preserve-3d',
+              overflow: 'hidden',
               boxShadow: styles.is3D 
                 ? `inset ${2 * scale}px ${2 * scale}px ${4 * scale}px rgba(255,255,255,0.5), inset ${-1 * scale}px ${-1 * scale}px ${3 * scale}px rgba(0,0,0,0.15)` 
                 : 'none',

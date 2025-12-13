@@ -79,6 +79,13 @@ export interface Translations {
   // Footer
   wappenAttribution: string;
   
+  // USB Installation Guide
+  usbInstallTitle: string;
+  usbInstallStep1: string;
+  usbInstallStep2: string;
+  usbInstallStep3: string;
+  usbInstallStep4: string;
+  
   // Months
   months: string[];
   
@@ -118,6 +125,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Als PNG exportieren',
     exportFailed: 'Export fehlgeschlagen. Bitte versuche es erneut.',
     wappenAttribution: 'Wappen: Wikimedia Commons (Public Domain / CC)',
+    usbInstallTitle: 'Wie füge ich es dem Tesla hinzu?',
+    usbInstallStep1: 'Erstellen Sie auf dem USB-Stick einen Ordner mit dem Namen "LicensePlate".',
+    usbInstallStep2: 'Fügen Sie im Ordner bis zu 10 benutzerdefinierte PNG-Hintergrundbilder hinzu. Jedes Bild sollte kleiner als 0,5 MB sein. Der Dateiname muss aus weniger als 32 Zeichen mit Buchstaben und Zahlen bestehen.',
+    usbInstallStep3: 'Die empfohlene Auflösung für jedes Bild beträgt 420 x 100 Pixel. Die maximale Auflösung beträgt 420 x 200 Pixel.',
+    usbInstallStep4: 'Stecken Sie den vorbereiteten USB-Stick in den USB-Anschluss des Fahrzeugs und navigieren Sie zu Hintergrund → Bild. Wenn die Dateien auf dem USB-Stick die Anforderungen erfüllen, stehen die benutzerdefinierten Bilder zur Auswahl aus dem Menü zur Verfügung.',
     months: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
     countries: {
       'D': 'Deutschland', 'A': 'Österreich', 'B': 'Belgien', 'BG': 'Bulgarien', 'HR': 'Kroatien',
@@ -159,6 +171,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Export as PNG',
     exportFailed: 'Export failed. Please try again.',
     wappenAttribution: 'Emblems: Wikimedia Commons (Public Domain / CC)',
+    usbInstallTitle: 'How do I add it to my Tesla?',
+    usbInstallStep1: 'Create a folder named "LicensePlate" on the USB drive.',
+    usbInstallStep2: 'Add up to 10 custom PNG background images to the folder. Each image should be smaller than 0.5 MB. The filename must consist of less than 32 characters with letters and numbers.',
+    usbInstallStep3: 'The recommended resolution for each image is 420 x 100 pixels. The maximum resolution is 420 x 200 pixels.',
+    usbInstallStep4: 'Insert the prepared USB drive into the vehicle\'s USB port and navigate to Background → Image. If the files on the USB drive meet the requirements, the custom images will be available for selection from the menu.',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     countries: {
       'D': 'Germany', 'A': 'Austria', 'B': 'Belgium', 'BG': 'Bulgaria', 'HR': 'Croatia',
@@ -200,6 +217,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exporter en PNG',
     exportFailed: 'Échec de l\'export. Veuillez réessayer.',
     wappenAttribution: 'Emblèmes: Wikimedia Commons (Domaine public / CC)',
+    usbInstallTitle: 'Comment l\'ajouter à ma Tesla ?',
+    usbInstallStep1: 'Créez un dossier nommé "LicensePlate" sur la clé USB.',
+    usbInstallStep2: 'Ajoutez jusqu\'à 10 images d\'arrière-plan PNG personnalisées dans le dossier. Chaque image doit être inférieure à 0,5 Mo. Le nom de fichier doit comporter moins de 32 caractères avec des lettres et des chiffres.',
+    usbInstallStep3: 'La résolution recommandée pour chaque image est de 420 x 100 pixels. La résolution maximale est de 420 x 200 pixels.',
+    usbInstallStep4: 'Insérez la clé USB préparée dans le port USB du véhicule et accédez à Arrière-plan → Image. Si les fichiers sur la clé USB répondent aux exigences, les images personnalisées seront disponibles pour sélection dans le menu.',
     months: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
     countries: {
       'D': 'Allemagne', 'A': 'Autriche', 'B': 'Belgique', 'BG': 'Bulgarie', 'HR': 'Croatie',
@@ -241,6 +263,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exportar como PNG',
     exportFailed: 'Error al exportar. Por favor, inténtalo de nuevo.',
     wappenAttribution: 'Emblemas: Wikimedia Commons (Dominio público / CC)',
+    usbInstallTitle: '¿Cómo lo añado a mi Tesla?',
+    usbInstallStep1: 'Cree una carpeta llamada "LicensePlate" en la unidad USB.',
+    usbInstallStep2: 'Agregue hasta 10 imágenes de fondo PNG personalizadas a la carpeta. Cada imagen debe ser menor de 0,5 MB. El nombre del archivo debe tener menos de 32 caracteres con letras y números.',
+    usbInstallStep3: 'La resolución recomendada para cada imagen es de 420 x 100 píxeles. La resolución máxima es de 420 x 200 píxeles.',
+    usbInstallStep4: 'Inserte la unidad USB preparada en el puerto USB del vehículo y navegue a Fondo → Imagen. Si los archivos en la unidad USB cumplen los requisitos, las imágenes personalizadas estarán disponibles para selección en el menú.',
     months: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     countries: {
       'D': 'Alemania', 'A': 'Austria', 'B': 'Bélgica', 'BG': 'Bulgaria', 'HR': 'Croacia',
@@ -282,6 +309,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Esporta come PNG',
     exportFailed: 'Esportazione fallita. Riprova.',
     wappenAttribution: 'Stemmi: Wikimedia Commons (Pubblico dominio / CC)',
+    usbInstallTitle: 'Come lo aggiungo alla mia Tesla?',
+    usbInstallStep1: 'Creare una cartella denominata "LicensePlate" sull\'unità USB.',
+    usbInstallStep2: 'Aggiungere fino a 10 immagini di sfondo PNG personalizzate alla cartella. Ogni immagine deve essere inferiore a 0,5 MB. Il nome del file deve essere composto da meno di 32 caratteri con lettere e numeri.',
+    usbInstallStep3: 'La risoluzione consigliata per ogni immagine è 420 x 100 pixel. La risoluzione massima è 420 x 200 pixel.',
+    usbInstallStep4: 'Inserire l\'unità USB preparata nella porta USB del veicolo e navigare su Sfondo → Immagine. Se i file sull\'unità USB soddisfano i requisiti, le immagini personalizzate saranno disponibili per la selezione dal menu.',
     months: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
     countries: {
       'D': 'Germania', 'A': 'Austria', 'B': 'Belgio', 'BG': 'Bulgaria', 'HR': 'Croazia',
@@ -323,6 +355,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exporteren als PNG',
     exportFailed: 'Export mislukt. Probeer het opnieuw.',
     wappenAttribution: 'Emblemen: Wikimedia Commons (Publiek domein / CC)',
+    usbInstallTitle: 'Hoe voeg ik het toe aan mijn Tesla?',
+    usbInstallStep1: 'Maak een map met de naam "LicensePlate" op de USB-stick.',
+    usbInstallStep2: 'Voeg maximaal 10 aangepaste PNG-achtergrondafbeeldingen toe aan de map. Elke afbeelding moet kleiner zijn dan 0,5 MB. De bestandsnaam moet bestaan uit minder dan 32 tekens met letters en cijfers.',
+    usbInstallStep3: 'De aanbevolen resolutie voor elke afbeelding is 420 x 100 pixels. De maximale resolutie is 420 x 200 pixels.',
+    usbInstallStep4: 'Steek de voorbereide USB-stick in de USB-poort van het voertuig en navigeer naar Achtergrond → Afbeelding. Als de bestanden op de USB-stick aan de vereisten voldoen, zijn de aangepaste afbeeldingen beschikbaar voor selectie in het menu.',
     months: ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
     countries: {
       'D': 'Duitsland', 'A': 'Oostenrijk', 'B': 'België', 'BG': 'Bulgarije', 'HR': 'Kroatië',
@@ -364,6 +401,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Eksportuj jako PNG',
     exportFailed: 'Eksport nie powiódł się. Spróbuj ponownie.',
     wappenAttribution: 'Godła: Wikimedia Commons (Domena publiczna / CC)',
+    usbInstallTitle: 'Jak dodać to do mojej Tesli?',
+    usbInstallStep1: 'Utwórz folder o nazwie "LicensePlate" na pendrive USB.',
+    usbInstallStep2: 'Dodaj do folderu maksymalnie 10 niestandardowych obrazów tła PNG. Każdy obraz powinien być mniejszy niż 0,5 MB. Nazwa pliku musi składać się z mniej niż 32 znaków zawierających litery i cyfry.',
+    usbInstallStep3: 'Zalecana rozdzielczość każdego obrazu to 420 x 100 pikseli. Maksymalna rozdzielczość to 420 x 200 pikseli.',
+    usbInstallStep4: 'Włóż przygotowany pendrive USB do portu USB pojazdu i przejdź do Tło → Obraz. Jeśli pliki na pendrive spełniają wymagania, niestandardowe obrazy będą dostępne do wyboru w menu.',
     months: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
     countries: {
       'D': 'Niemcy', 'A': 'Austria', 'B': 'Belgia', 'BG': 'Bułgaria', 'HR': 'Chorwacja',
@@ -405,6 +447,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exportar como PNG',
     exportFailed: 'Falha na exportação. Tente novamente.',
     wappenAttribution: 'Emblemas: Wikimedia Commons (Domínio público / CC)',
+    usbInstallTitle: 'Como adiciono ao meu Tesla?',
+    usbInstallStep1: 'Crie uma pasta chamada "LicensePlate" na unidade USB.',
+    usbInstallStep2: 'Adicione até 10 imagens de fundo PNG personalizadas à pasta. Cada imagem deve ter menos de 0,5 MB. O nome do ficheiro deve ter menos de 32 caracteres com letras e números.',
+    usbInstallStep3: 'A resolução recomendada para cada imagem é 420 x 100 pixels. A resolução máxima é 420 x 200 pixels.',
+    usbInstallStep4: 'Insira a unidade USB preparada na porta USB do veículo e navegue até Fundo → Imagem. Se os ficheiros na unidade USB atenderem aos requisitos, as imagens personalizadas estarão disponíveis para seleção no menu.',
     months: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     countries: {
       'D': 'Alemanha', 'A': 'Áustria', 'B': 'Bélgica', 'BG': 'Bulgária', 'HR': 'Croácia',
@@ -446,6 +493,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exportera som PNG',
     exportFailed: 'Export misslyckades. Försök igen.',
     wappenAttribution: 'Emblem: Wikimedia Commons (Public Domain / CC)',
+    usbInstallTitle: 'Hur lägger jag till den i min Tesla?',
+    usbInstallStep1: 'Skapa en mapp med namnet "LicensePlate" på USB-enheten.',
+    usbInstallStep2: 'Lägg till upp till 10 anpassade PNG-bakgrundsbilder i mappen. Varje bild ska vara mindre än 0,5 MB. Filnamnet måste bestå av mindre än 32 tecken med bokstäver och siffror.',
+    usbInstallStep3: 'Den rekommenderade upplösningen för varje bild är 420 x 100 pixlar. Den maximala upplösningen är 420 x 200 pixlar.',
+    usbInstallStep4: 'Sätt i den förberedda USB-enheten i fordonets USB-port och navigera till Bakgrund → Bild. Om filerna på USB-enheten uppfyller kraven kommer de anpassade bilderna att vara tillgängliga för val i menyn.',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
     countries: {
       'D': 'Tyskland', 'A': 'Österrike', 'B': 'Belgien', 'BG': 'Bulgarien', 'HR': 'Kroatien',
@@ -487,6 +539,11 @@ const translations: Record<Language, Translations> = {
     exportPNG: 'Exportovat jako PNG',
     exportFailed: 'Export selhal. Zkuste to znovu.',
     wappenAttribution: 'Znaky: Wikimedia Commons (Public Domain / CC)',
+    usbInstallTitle: 'Jak to přidám do své Tesly?',
+    usbInstallStep1: 'Vytvořte složku s názvem "LicensePlate" na USB disku.',
+    usbInstallStep2: 'Přidejte do složky až 10 vlastních obrázků pozadí PNG. Každý obrázek by měl být menší než 0,5 MB. Název souboru musí obsahovat méně než 32 znaků s písmeny a čísly.',
+    usbInstallStep3: 'Doporučené rozlišení pro každý obrázek je 420 x 100 pixelů. Maximální rozlišení je 420 x 200 pixelů.',
+    usbInstallStep4: 'Vložte připravený USB disk do USB portu vozidla a přejděte na Pozadí → Obrázek. Pokud soubory na USB disku splňují požadavky, vlastní obrázky budou k dispozici pro výběr v nabídce.',
     months: ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čvn', 'Čvc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
     countries: {
       'D': 'Německo', 'A': 'Rakousko', 'B': 'Belgie', 'BG': 'Bulharsko', 'HR': 'Chorvatsko',
