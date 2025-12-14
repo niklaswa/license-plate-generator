@@ -1,12 +1,14 @@
 'use client';
 
 import React, { forwardRef, useRef, useState, useLayoutEffect, useEffect } from 'react';
-import { GermanPlateConfig, PlateStyle, GermanState, AustrianState } from '@/types/plate';
+import { GermanPlateConfig, PlateStyle, GermanState, AustrianState, SwissCanton } from '@/types/plate';
 import EUBand from './EUBand';
 import StatePlakette from './StatePlakette';
 import AustrianStatePlakette from './AustrianStatePlakette';
 import HungarianCoatOfArms from './HungarianCoatOfArms';
 import SlovakCoatOfArms from './SlovakCoatOfArms';
+import SwissCoatOfArms from './SwissCoatOfArms';
+import SwissCantonPlakette from './SwissCantonPlakette';
 import HUPlakette from './HUPlakette';
 import BundeswehrPlakette from './BundeswehrPlakette';
 
@@ -162,9 +164,11 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
     const redStripeHeight = 2 * scale;
     
     // Available width for content (after EU band, borders, padding, and right band if present)
+    // Switzerland (CH) has no EU band
+    const effectiveEuBandWidth = country === 'CH' ? 0 : euBandWidth;
     const rightBandWidth = countryFeatures.hasRightBand ? euBandWidth : 0;
     const seasonalPlateWidth = (isGermany && seasonalPlate) ? 37 * scale : 0; // Reserve space for seasonal numbers
-    const availableWidth = plateWidth - euBandWidth - rightBandWidth - seasonalPlateWidth - (borderWidth * 2) - (padding * 2);
+    const availableWidth = plateWidth - effectiveEuBandWidth - rightBandWidth - seasonalPlateWidth - (borderWidth * 2) - (padding * 2);
     
     // Create a content key that changes when content changes - forces remeasurement
     const contentKey = `${cityCode}-${letters}-${numbers}-${suffix}-${showStatePlakette}-${showHUPlakette}-${plateText}-${plateType}-${country}-${seasonalPlate?.startMonth}-${seasonalPlate?.endMonth}`;
@@ -186,7 +190,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
         // Compact mode: Expand plate to fit content, but max 520mm
         const rightBandWidth = countryFeatures.hasRightBand ? euBandWidth : 0;
         const seasonalPlateWidth = (isGermany && seasonalPlate) ? 37 * scale : 0;
-        const requiredWidth = euBandWidth + rightBandWidth + seasonalPlateWidth + (borderWidth * 2) + (padding * 2) + contentWidth;
+        const requiredWidth = effectiveEuBandWidth + rightBandWidth + seasonalPlateWidth + (borderWidth * 2) + (padding * 2) + contentWidth;
         const maxWidth = 520 * scale;
         
         if (requiredWidth <= maxWidth) {
@@ -215,7 +219,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
         }
       }
     }
-  }, [contentKey, availableWidth, scale, fontLoaded, width, euBandWidth, borderWidth, padding, isGermany, seasonalPlate, minCompactWidth, countryFeatures.hasRightBand]);
+  }, [contentKey, availableWidth, scale, fontLoaded, width, euBandWidth, effectiveEuBandWidth, borderWidth, padding, isGermany, seasonalPlate, minCompactWidth, countryFeatures.hasRightBand]);
     
     const baseTextStyle: React.CSSProperties = {
       fontSize: `${fontSize}px`,
@@ -378,8 +382,8 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
             </>
           )}
           
-          {/* EU Band or German Flag for military */}
-          {country === 'D' && cityCode === 'Y' ? (
+          {/* EU Band or German Flag for military - not shown for Switzerland */}
+          {country === 'CH' ? null : country === 'D' && cityCode === 'Y' ? (
             /* German Flag for military plates */
             <div style={{
               position: 'absolute',
@@ -453,7 +457,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
           <div 
             style={{ 
               position: 'absolute',
-              left: `${euBandWidth}px`,
+              left: country === 'CH' ? 0 : `${euBandWidth}px`,
               right: countryFeatures.hasRightBand ? `${euBandWidth}px` : 0,
               top: 0,
               bottom: 0,
@@ -583,6 +587,28 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
                   
                   {/* Free text for Slovakia */}
                   <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{plateText || ''}</span>
+                </>
+              ) : country === 'CH' ? (
+                /* Swiss format with Swiss coat of arms and canton plakette */
+                <>
+                  {/* Swiss coat of arms (left side) */}
+                  {showStatePlakette && (
+                    <div style={{ transformStyle: 'preserve-3d' }}>
+                      <SwissCoatOfArms scale={scale * 1.15} />
+                    </div>
+                  )}
+                  
+                  {/* Canton code + dot + Number */}
+                  <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{cityCode}</span>
+                  <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d', fontSize: `${fontSize * 0.6}px`, margin: `0 ${2 * scale}px`, alignSelf: 'center' }}>•</span>
+                  <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{numbers}</span>
+                  
+                  {/* Canton coat of arms (right side) */}
+                  {showStatePlakette && state && (
+                    <div style={{ transformStyle: 'preserve-3d' }}>
+                      <SwissCantonPlakette canton={state as SwissCanton} scale={scale * 1.15} />
+                    </div>
+                  )}
                 </>
               ) : (
                 <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>

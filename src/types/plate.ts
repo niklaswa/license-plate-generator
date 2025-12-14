@@ -17,12 +17,13 @@ export const PLATE_STYLE_NAMES: Record<PlateStyle, string> = {
   '3d-carbon-glossy': '3D Carbon Glänzend',
 };
 
-// EU Countries
+// EU Countries + Switzerland
 export type EUCountry = 
   | 'D'   // Germany
   | 'A'   // Austria
   | 'B'   // Belgium
   | 'BG'  // Bulgaria
+  | 'CH'  // Switzerland
   | 'HR'  // Croatia
   | 'CY'  // Cyprus
   | 'CZ'  // Czech Republic
@@ -52,6 +53,7 @@ export const EU_COUNTRY_NAMES: Record<EUCountry, string> = {
   'A': 'Österreich',
   'B': 'Belgien',
   'BG': 'Bulgarien',
+  'CH': 'Schweiz',
   'HR': 'Kroatien',
   'CY': 'Zypern',
   'CZ': 'Tschechien',
@@ -95,7 +97,7 @@ export interface PlateConfig {
   suffix: PlateSuffix;     // E for electric, H for historic
   showStatePlakette: boolean;
   showHUPlakette: boolean;
-  state: GermanState | AustrianState | HungarianState | SlovakState;  // State/Bundesland for Germany, Austria, or national emblem for Hungary/Slovakia
+  state: GermanState | AustrianState | HungarianState | SlovakState | SwissCanton;  // State/Bundesland for Germany, Austria, Canton for Switzerland, or national emblem for Hungary/Slovakia
   city: string;            // City name shown on state plakette
   huYear: number;          // Year for HU sticker
   huMonth: number;         // Month for HU sticker (1-12)
@@ -166,4 +168,62 @@ export const STATE_NAMES: Record<GermanState, string> = {
   ST: 'Sachsen-Anhalt',
   SH: 'Schleswig-Holstein',
   TH: 'Thüringen',
+};
+
+// Swiss Cantons
+export type SwissCanton =
+  | 'AG'  // Aargau
+  | 'AI'  // Appenzell Innerrhoden
+  | 'AR'  // Appenzell Ausserrhoden
+  | 'BE'  // Bern
+  | 'BL'  // Basel-Landschaft
+  | 'BS'  // Basel-Stadt
+  | 'FR'  // Freiburg
+  | 'GE'  // Genf
+  | 'GL'  // Glarus
+  | 'GR'  // Graubünden
+  | 'JU'  // Jura
+  | 'LU'  // Luzern
+  | 'NE'  // Neuenburg
+  | 'NW'  // Nidwalden
+  | 'OW'  // Obwalden
+  | 'SG'  // St. Gallen
+  | 'SH'  // Schaffhausen
+  | 'SO'  // Solothurn
+  | 'SZ'  // Schwyz
+  | 'TG'  // Thurgau
+  | 'TI'  // Tessin
+  | 'UR'  // Uri
+  | 'VD'  // Waadt
+  | 'VS'  // Wallis
+  | 'ZG'  // Zug
+  | 'ZH'; // Zürich
+
+export const SWISS_CANTON_NAMES: Record<SwissCanton, string> = {
+  AG: 'Aargau',
+  AI: 'Appenzell Innerrhoden',
+  AR: 'Appenzell Ausserrhoden',
+  BE: 'Bern',
+  BL: 'Basel-Landschaft',
+  BS: 'Basel-Stadt',
+  FR: 'Freiburg',
+  GE: 'Genf',
+  GL: 'Glarus',
+  GR: 'Graubünden',
+  JU: 'Jura',
+  LU: 'Luzern',
+  NE: 'Neuenburg',
+  NW: 'Nidwalden',
+  OW: 'Obwalden',
+  SG: 'St. Gallen',
+  SH: 'Schaffhausen',
+  SO: 'Solothurn',
+  SZ: 'Schwyz',
+  TG: 'Thurgau',
+  TI: 'Tessin',
+  UR: 'Uri',
+  VD: 'Waadt',
+  VS: 'Wallis',
+  ZG: 'Zug',
+  ZH: 'Zürich',
 };

@@ -29,8 +29,8 @@ export const LANGUAGE_FLAGS: Record<Language, string> = {
   cs: '🇨🇿',
 };
 
-// EU Country codes type
-export type EUCountryCode = 'D' | 'A' | 'B' | 'BG' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S';
+// EU Country codes type (including Switzerland)
+export type EUCountryCode = 'D' | 'A' | 'B' | 'BG' | 'CH' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S';
 
 export interface Translations {
   // Page title
@@ -104,7 +104,7 @@ export interface Translations {
 
 const translations: Record<Language, Translations> = {
   de: {
-    pageTitle: '🇪🇺 EU Kennzeichen Generator',
+    pageTitle: 'Kennzeichen Generator',
     configureTitle: 'Kennzeichen konfigurieren',
     previewTitle: 'Vorschau',
     country: 'Land',
@@ -146,7 +146,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Stecken Sie den vorbereiteten USB-Stick in den USB-Anschluss des Fahrzeugs und navigieren Sie zu Hintergrund → Bild. Wenn die Dateien auf dem USB-Stick die Anforderungen erfüllen, stehen die benutzerdefinierten Bilder zur Auswahl aus dem Menü zur Verfügung.',
     months: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
     countries: {
-      'D': 'Deutschland', 'A': 'Österreich', 'B': 'Belgien', 'BG': 'Bulgarien', 'HR': 'Kroatien',
+      'D': 'Deutschland', 'A': 'Österreich', 'B': 'Belgien', 'BG': 'Bulgarien', 'CH': 'Schweiz', 'HR': 'Kroatien',
       'CY': 'Zypern', 'CZ': 'Tschechien', 'DK': 'Dänemark', 'EST': 'Estland', 'FIN': 'Finnland',
       'F': 'Frankreich', 'GR': 'Griechenland', 'H': 'Ungarn', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Niederlande',
@@ -155,7 +155,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   en: {
-    pageTitle: '🇪🇺 EU License Plate Generator',
+    pageTitle: 'License Plate Generator',
     configureTitle: 'Configure License Plate',
     previewTitle: 'Preview',
     country: 'Country',
@@ -197,7 +197,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Insert the prepared USB drive into the vehicle\'s USB port and navigate to Background → Image. If the files on the USB drive meet the requirements, the custom images will be available for selection from the menu.',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     countries: {
-      'D': 'Germany', 'A': 'Austria', 'B': 'Belgium', 'BG': 'Bulgaria', 'HR': 'Croatia',
+      'D': 'Germany', 'A': 'Austria', 'B': 'Belgium', 'BG': 'Bulgaria', 'CH': 'Switzerland', 'HR': 'Croatia',
       'CY': 'Cyprus', 'CZ': 'Czech Republic', 'DK': 'Denmark', 'EST': 'Estonia', 'FIN': 'Finland',
       'F': 'France', 'GR': 'Greece', 'H': 'Hungary', 'IRL': 'Ireland', 'I': 'Italy',
       'LV': 'Latvia', 'LT': 'Lithuania', 'L': 'Luxembourg', 'M': 'Malta', 'NL': 'Netherlands',
@@ -206,7 +206,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   fr: {
-    pageTitle: '🇪🇺 Générateur de Plaques EU',
+    pageTitle: 'Générateur de Plaques',
     configureTitle: 'Configurer la plaque',
     previewTitle: 'Aperçu',
     country: 'Pays',
@@ -248,7 +248,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Insérez la clé USB préparée dans le port USB du véhicule et accédez à Arrière-plan → Image. Si les fichiers sur la clé USB répondent aux exigences, les images personnalisées seront disponibles pour sélection dans le menu.',
     months: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
     countries: {
-      'D': 'Allemagne', 'A': 'Autriche', 'B': 'Belgique', 'BG': 'Bulgarie', 'HR': 'Croatie',
+      'D': 'Allemagne', 'A': 'Autriche', 'B': 'Belgique', 'BG': 'Bulgarie', 'CH': 'Suisse', 'HR': 'Croatie',
       'CY': 'Chypre', 'CZ': 'Tchéquie', 'DK': 'Danemark', 'EST': 'Estonie', 'FIN': 'Finlande',
       'F': 'France', 'GR': 'Grèce', 'H': 'Hongrie', 'IRL': 'Irlande', 'I': 'Italie',
       'LV': 'Lettonie', 'LT': 'Lituanie', 'L': 'Luxembourg', 'M': 'Malte', 'NL': 'Pays-Bas',
@@ -257,7 +257,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   es: {
-    pageTitle: '🇪🇺 Generador de Matrículas EU',
+    pageTitle: 'Generador de Matrículas',
     configureTitle: 'Configurar matrícula',
     previewTitle: 'Vista previa',
     country: 'País',
@@ -299,7 +299,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Inserte la unidad USB preparada en el puerto USB del vehículo y navegue a Fondo → Imagen. Si los archivos en la unidad USB cumplen los requisitos, las imágenes personalizadas estarán disponibles para selección en el menú.',
     months: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     countries: {
-      'D': 'Alemania', 'A': 'Austria', 'B': 'Bélgica', 'BG': 'Bulgaria', 'HR': 'Croacia',
+      'D': 'Alemania', 'A': 'Austria', 'B': 'Bélgica', 'BG': 'Bulgaria', 'CH': 'Suiza', 'HR': 'Croacia',
       'CY': 'Chipre', 'CZ': 'Chequia', 'DK': 'Dinamarca', 'EST': 'Estonia', 'FIN': 'Finlandia',
       'F': 'Francia', 'GR': 'Grecia', 'H': 'Hungría', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Letonia', 'LT': 'Lituania', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Bajos',
@@ -308,7 +308,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   it: {
-    pageTitle: '🇪🇺 Generatore Targhe EU',
+    pageTitle: 'Generatore Targhe',
     configureTitle: 'Configura targa',
     previewTitle: 'Anteprima',
     country: 'Paese',
@@ -350,7 +350,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Inserire l\'unità USB preparata nella porta USB del veicolo e navigare su Sfondo → Immagine. Se i file sull\'unità USB soddisfano i requisiti, le immagini personalizzate saranno disponibili per la selezione dal menu.',
     months: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
     countries: {
-      'D': 'Germania', 'A': 'Austria', 'B': 'Belgio', 'BG': 'Bulgaria', 'HR': 'Croazia',
+      'D': 'Germania', 'A': 'Austria', 'B': 'Belgio', 'BG': 'Bulgaria', 'CH': 'Svizzera', 'HR': 'Croazia',
       'CY': 'Cipro', 'CZ': 'Cechia', 'DK': 'Danimarca', 'EST': 'Estonia', 'FIN': 'Finlandia',
       'F': 'Francia', 'GR': 'Grecia', 'H': 'Ungheria', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Lettonia', 'LT': 'Lituania', 'L': 'Lussemburgo', 'M': 'Malta', 'NL': 'Paesi Bassi',
@@ -359,7 +359,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   nl: {
-    pageTitle: '🇪🇺 EU Kentekenplaat Generator',
+    pageTitle: 'Kentekenplaat Generator',
     configureTitle: 'Kentekenplaat configureren',
     previewTitle: 'Voorbeeld',
     country: 'Land',
@@ -401,7 +401,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Steek de voorbereide USB-stick in de USB-poort van het voertuig en navigeer naar Achtergrond → Afbeelding. Als de bestanden op de USB-stick aan de vereisten voldoen, zijn de aangepaste afbeeldingen beschikbaar voor selectie in het menu.',
     months: ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
     countries: {
-      'D': 'Duitsland', 'A': 'Oostenrijk', 'B': 'België', 'BG': 'Bulgarije', 'HR': 'Kroatië',
+      'D': 'Duitsland', 'A': 'Oostenrijk', 'B': 'België', 'BG': 'Bulgarije', 'CH': 'Zwitserland', 'HR': 'Kroatië',
       'CY': 'Cyprus', 'CZ': 'Tsjechië', 'DK': 'Denemarken', 'EST': 'Estland', 'FIN': 'Finland',
       'F': 'Frankrijk', 'GR': 'Griekenland', 'H': 'Hongarije', 'IRL': 'Ierland', 'I': 'Italië',
       'LV': 'Letland', 'LT': 'Litouwen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederland',
@@ -410,7 +410,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   pl: {
-    pageTitle: '🇪🇺 Generator Tablic EU',
+    pageTitle: 'Generator Tablic',
     configureTitle: 'Konfiguruj tablicę',
     previewTitle: 'Podgląd',
     country: 'Kraj',
@@ -452,7 +452,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Włóż przygotowany pendrive USB do portu USB pojazdu i przejdź do Tło → Obraz. Jeśli pliki na pendrive spełniają wymagania, niestandardowe obrazy będą dostępne do wyboru w menu.',
     months: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
     countries: {
-      'D': 'Niemcy', 'A': 'Austria', 'B': 'Belgia', 'BG': 'Bułgaria', 'HR': 'Chorwacja',
+      'D': 'Niemcy', 'A': 'Austria', 'B': 'Belgia', 'BG': 'Bułgaria', 'CH': 'Szwajcaria', 'HR': 'Chorwacja',
       'CY': 'Cypr', 'CZ': 'Czechy', 'DK': 'Dania', 'EST': 'Estonia', 'FIN': 'Finlandia',
       'F': 'Francja', 'GR': 'Grecja', 'H': 'Węgry', 'IRL': 'Irlandia', 'I': 'Włochy',
       'LV': 'Łotwa', 'LT': 'Litwa', 'L': 'Luksemburg', 'M': 'Malta', 'NL': 'Holandia',
@@ -461,7 +461,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   pt: {
-    pageTitle: '🇪🇺 Gerador de Matrículas EU',
+    pageTitle: 'Gerador de Matrículas',
     configureTitle: 'Configurar matrícula',
     previewTitle: 'Pré-visualização',
     country: 'País',
@@ -503,7 +503,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Insira a unidade USB preparada na porta USB do veículo e navegue até Fundo → Imagem. Se os ficheiros na unidade USB atenderem aos requisitos, as imagens personalizadas estarão disponíveis para seleção no menu.',
     months: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     countries: {
-      'D': 'Alemanha', 'A': 'Áustria', 'B': 'Bélgica', 'BG': 'Bulgária', 'HR': 'Croácia',
+      'D': 'Alemanha', 'A': 'Áustria', 'B': 'Bélgica', 'BG': 'Bulgária', 'CH': 'Suíça', 'HR': 'Croácia',
       'CY': 'Chipre', 'CZ': 'Chéquia', 'DK': 'Dinamarca', 'EST': 'Estónia', 'FIN': 'Finlândia',
       'F': 'França', 'GR': 'Grécia', 'H': 'Hungria', 'IRL': 'Irlanda', 'I': 'Itália',
       'LV': 'Letónia', 'LT': 'Lituânia', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Baixos',
@@ -512,7 +512,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   sv: {
-    pageTitle: '🇪🇺 EU Registreringsskylt Generator',
+    pageTitle: 'Registreringsskylt Generator',
     configureTitle: 'Konfigurera skylt',
     previewTitle: 'Förhandsgranskning',
     country: 'Land',
@@ -554,7 +554,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Sätt i den förberedda USB-enheten i fordonets USB-port och navigera till Bakgrund → Bild. Om filerna på USB-enheten uppfyller kraven kommer de anpassade bilderna att vara tillgängliga för val i menyn.',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
     countries: {
-      'D': 'Tyskland', 'A': 'Österrike', 'B': 'Belgien', 'BG': 'Bulgarien', 'HR': 'Kroatien',
+      'D': 'Tyskland', 'A': 'Österrike', 'B': 'Belgien', 'BG': 'Bulgarien', 'CH': 'Schweiz', 'HR': 'Kroatien',
       'CY': 'Cypern', 'CZ': 'Tjeckien', 'DK': 'Danmark', 'EST': 'Estland', 'FIN': 'Finland',
       'F': 'Frankrike', 'GR': 'Grekland', 'H': 'Ungern', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederländerna',
@@ -563,7 +563,7 @@ const translations: Record<Language, Translations> = {
     },
   },
   cs: {
-    pageTitle: '🇪🇺 Generátor SPZ EU',
+    pageTitle: 'Generátor SPZ',
     configureTitle: 'Konfigurovat SPZ',
     previewTitle: 'Náhled',
     country: 'Země',
@@ -605,7 +605,7 @@ const translations: Record<Language, Translations> = {
     usbInstallStep4: 'Vložte připravený USB disk do USB portu vozidla a přejděte na Pozadí → Obrázek. Pokud soubory na USB disku splňují požadavky, vlastní obrázky budou k dispozici pro výběr v nabídce.',
     months: ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čvn', 'Čvc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
     countries: {
-      'D': 'Německo', 'A': 'Rakousko', 'B': 'Belgie', 'BG': 'Bulharsko', 'HR': 'Chorvatsko',
+      'D': 'Německo', 'A': 'Rakousko', 'B': 'Belgie', 'BG': 'Bulharsko', 'CH': 'Švýcarsko', 'HR': 'Chorvatsko',
       'CY': 'Kypr', 'CZ': 'Česko', 'DK': 'Dánsko', 'EST': 'Estonsko', 'FIN': 'Finsko',
       'F': 'Francie', 'GR': 'Řecko', 'H': 'Maďarsko', 'IRL': 'Irsko', 'I': 'Itálie',
       'LV': 'Lotyšsko', 'LT': 'Litva', 'L': 'Lucembursko', 'M': 'Malta', 'NL': 'Nizozemsko',

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { domToPng } from 'modern-screenshot';
-import { GermanPlateConfig, GermanState, STATE_NAMES, AustrianState, AUSTRIAN_STATE_NAMES, HungarianState, SlovakState, PlateWidth, PlateSuffix, PlateStyle, PlateType, EUCountry } from '@/types/plate';
+import { GermanPlateConfig, GermanState, STATE_NAMES, AustrianState, AUSTRIAN_STATE_NAMES, HungarianState, SlovakState, SwissCanton, SWISS_CANTON_NAMES, PlateWidth, PlateSuffix, PlateStyle, PlateType, EUCountry } from '@/types/plate';
 import LicensePlate from './LicensePlate';
 import { useTranslation, Language, LANGUAGE_NAMES, LANGUAGE_FLAGS, SUPPORTED_LANGUAGES } from '@/i18n';
 
@@ -15,6 +15,7 @@ const COUNTRY_FLAGS: Record<EUCountry, string> = {
   'A': '🇦🇹',
   'B': '🇧🇪',
   'BG': '🇧🇬',
+  'CH': '🇨🇭',
   'HR': '🇭🇷',
   'CY': '🇨🇾',
   'CZ': '🇨🇿',
@@ -182,6 +183,7 @@ export default function PlateGenerator() {
   const [config, setConfig] = useState<GermanPlateConfig>(DEFAULT_CONFIG);
   const [showGermanOptions, setShowGermanOptions] = useState(true);
   const [showAustrianOptions, setShowAustrianOptions] = useState(true);
+  const [showSwissOptions, setShowSwissOptions] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
   const [plateTexture, setPlateTexture] = useState<string | null>(null);
   const [show3DPreview, setShow3DPreview] = useState(false);
@@ -319,13 +321,22 @@ export default function PlateGenerator() {
       const dataUrl = canvas.toDataURL('image/png');
       console.debug('[Export] Resized image ready, length:', dataUrl.length);
 
-      // Generate filename
-      const isGermany = config.country === 'D';
+      // Generate filename based on country
       let baseName: string;
-      if (isGermany) {
-        baseName = `${config.cityCode}${config.letters}${config.numbers}${config.suffix}`;
-      } else {
-        baseName = config.plateText || `${config.cityCode}${config.letters}${config.numbers}`;
+      switch (config.country) {
+        case 'D': // Germany: cityCode + letters + numbers + suffix
+          baseName = `${config.cityCode}${config.letters}${config.numbers}${config.suffix}`;
+          break;
+        case 'A': // Austria: cityCode + plateText
+        case 'H': // Hungary: cityCode + plateText
+        case 'SK': // Slovakia: cityCode + plateText
+          baseName = `${config.cityCode}${config.plateText}`;
+          break;
+        case 'CH': // Switzerland: cityCode (canton) + numbers
+          baseName = `${config.cityCode}${config.numbers}`;
+          break;
+        default: // Other countries: use plateText or fallback
+          baseName = config.plateText || `${config.cityCode}${config.letters}${config.numbers}`;
       }
       const cleanName = baseName.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
       const filename = `Plate${cleanName}.png`;
@@ -419,7 +430,10 @@ export default function PlateGenerator() {
                     backgroundColor: countryDefaults.backgroundColor,
                     rightBandText: countryDefaults.rightBandText,
                     // Reset state to appropriate default when switching countries
-                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : 'BY',
+                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : newCountry === 'CH' ? 'ZH' : 'BY',
+                    // Reset cityCode for Swiss plates to canton code
+                    cityCode: newCountry === 'CH' ? 'ZH' : prev.cityCode,
+                    numbers: newCountry === 'CH' ? '123456' : prev.numbers,
                   }));
                   setShowGermanOptions(newCountry === 'D');
                   setShowAustrianOptions(newCountry === 'A');
@@ -435,7 +449,7 @@ export default function PlateGenerator() {
             </div>
 
             {/* Plate Text - for countries without coat of arms */}
-            {!['D', 'A', 'H', 'SK'].includes(config.country) && (
+            {!['D', 'A', 'H', 'SK', 'CH'].includes(config.country) && (
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                   {config.country === 'S' ? (config.plateType === 'normal' ? t.lettersAndNumbers : t.personalizedText) : t.plateText}
@@ -599,6 +613,48 @@ export default function PlateGenerator() {
                     className="modern-input"
                     maxLength={7}
                     placeholder="ABC123"
+                  />
+                </div>
+              </>
+            )}
+
+            {/* Swiss plate inputs - Canton + Number */}
+            {config.country === 'CH' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                    Kanton
+                  </label>
+                  <select
+                    value={config.state}
+                    onChange={(e) => {
+                      const canton = e.target.value as SwissCanton;
+                      setConfig(prev => ({
+                        ...prev,
+                        state: canton,
+                        cityCode: canton, // Canton code is also the plate prefix
+                      }));
+                    }}
+                    className="modern-select"
+                  >
+                    {Object.entries(SWISS_CANTON_NAMES).map(([code, name]) => (
+                      <option key={code} value={code}>
+                        {code} - {name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                    Nummer
+                  </label>
+                  <input
+                    type="text"
+                    value={config.numbers}
+                    onChange={(e) => handleChange('numbers', e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    className="modern-input"
+                    maxLength={6}
+                    placeholder="123456"
                   />
                 </div>
               </>
@@ -939,6 +995,39 @@ export default function PlateGenerator() {
                         </option>
                       ))}
                     </select>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Swiss-specific options - collapsible */}
+          {config.country === 'CH' && (
+            <div className="mt-6 border-t border-gray-200/50 dark:border-gray-700/50 pt-6">
+              <button
+                onClick={() => setShowSwissOptions(!showSwissOptions)}
+                className="flex items-center gap-3 text-lg font-medium text-gray-800 dark:text-white mb-4 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 group"
+              >
+                <span className={`transform transition-transform duration-300 ${showSwissOptions ? 'rotate-90' : ''} group-hover:text-purple-500`}>▶</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-2xl">🇨🇭</span>
+                  Wappen anzeigen
+                </span>
+              </button>
+              
+              {showSwissOptions && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-in slide-in-from-top-2 duration-300">
+                  {/* Checkbox for showing coat of arms */}
+                  <div className="flex flex-col gap-3">
+                    <label className="flex items-center gap-3 text-gray-700 dark:text-gray-300 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={config.showStatePlakette}
+                        onChange={(e) => handleChange('showStatePlakette', e.target.checked)}
+                        className="w-5 h-5 rounded-lg text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-600 transition-all"
+                      />
+                      <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Schweizer & Kantonswappen anzeigen</span>
+                    </label>
                   </div>
                 </div>
               )}

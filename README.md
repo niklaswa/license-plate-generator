@@ -1,4 +1,4 @@
-# EU License Plate Generator
+# License Plate Generator
 
 A Next.js application for generating EU license plates as PNG images – optimized for Tesla's license plate display feature.
 

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "EU License Plate Generator",
-  description: "Generate EU license plates as images - German plates with state plakette and HU plakette",
+  title: "License Plate Generator",
+  description: "Generate license plates as images - German plates with state plakette and HU plakette",
 };
 
 export default function RootLayout({
