@@ -245,15 +245,24 @@ export default function PlateGenerator() {
     if (!isInitialized) return;
     setConfig(prev => {
       const newConfig = { ...prev };
+
+      // --- ADDED: Austria Green Color Logic ---
+      if (prev.country === 'A') {
+        newConfig.fontColor = '#008351'; // Austrian EV Green
+      } else if (prev.fontColor === '#008351') {
+
+        newConfig.fontColor = '#000000';
+      }
+      // ----------------------------------------
+
       if (prev.country === 'S') {
         if (prev.plateType === 'normal') {
-          // Set default normal format
           newConfig.plateText = 'ABC123';
         }
       } else {
         // Reset when not Sweden
         if (prev.plateText === 'ABC123') {
-          newConfig.plateText = DEFAULT_CONFIG.plateText;
+           newConfig.plateText = 'MUSTER'; 
         }
       }
       return newConfig;
