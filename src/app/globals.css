@@ -64,6 +64,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Alte DIN 1451';
+  src: url('/fonts/AlteDIN1451.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #f5f5f5;
   --foreground: #171717;
