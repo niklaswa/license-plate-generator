@@ -419,10 +419,25 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
                 flexDirection: 'column',
                 borderRadius: `${2 * scale}px`,
                 overflow: 'hidden',
+                position: 'relative',
               }}>
                 <div style={{ flex: 1, backgroundColor: '#000000' }} />
                 <div style={{ flex: 1, backgroundColor: '#DD0000' }} />
                 <div style={{ flex: 1, backgroundColor: '#FFCE00' }} />
+                {/* Dynamic shimmer overlay */}
+                {isHovering && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `radial-gradient(ellipse at ${50 + (tilt.rotateY * 3)}% ${50 + (tilt.rotateX * 3)}%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%)`,
+                      pointerEvents: 'none',
+                    }}
+                  />
+                )}
               </div>
             </div>
           ) : (
