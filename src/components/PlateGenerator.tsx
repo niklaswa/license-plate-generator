@@ -41,11 +41,16 @@ const COUNTRY_FLAGS: Record<Country, string> = {
   'SLO': '🇸🇮',
   'E': '🇪🇸',
   'S': '🇸🇪',
+  'FL': '🇱🇮',
 };
 
 // Country-specific default colors and settings
 function getCountryDefaults(country: Country): { fontColor: string; backgroundColor: string; rightBandText: string } {
   switch (country) {
+    // Black plates
+    case 'FL': // Liechtenstein - black with white text
+      return { fontColor: '#FFFFFF', backgroundColor: '#000000', rightBandText: '' };
+    
     // Yellow plates
     case 'NL': // Netherlands - yellow
       return { fontColor: '#000000', backgroundColor: '#F7D117', rightBandText: '' };
@@ -441,7 +446,7 @@ export default function PlateGenerator() {
                     backgroundColor: countryDefaults.backgroundColor,
                     rightBandText: countryDefaults.rightBandText,
                     // Reset state to appropriate default when switching countries
-                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : newCountry === 'CH' ? 'ZH' : 'NW',
+                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : newCountry === 'FL' ? 'FL' : newCountry === 'CH' ? 'ZH' : 'NW',
                     // Reset cityCode for Swiss plates to canton code
                     cityCode: newCountry === 'CH' ? 'ZH' : prev.cityCode,
                     numbers: newCountry === 'CH' ? '123456' : prev.numbers,
@@ -460,7 +465,7 @@ export default function PlateGenerator() {
             </div>
 
             {/* Plate Text - for countries without coat of arms */}
-            {!['D', 'A', 'H', 'SK', 'CH'].includes(config.country) && (
+            {!['D', 'A', 'H', 'SK', 'CH', 'FL'].includes(config.country) && (
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                   {config.country === 'S' ? (config.plateType === 'normal' ? t.lettersAndNumbers : t.personalizedText) : t.plateText}
@@ -624,6 +629,25 @@ export default function PlateGenerator() {
                     className="modern-input"
                     maxLength={7}
                     placeholder="ABC123"
+                  />
+                </div>
+              </>
+            )}
+
+            {/* Liechtenstein plate inputs - Free text */}
+            {config.country === 'FL' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                    Kennzeichen
+                  </label>
+                  <input
+                    type="text"
+                    value={config.plateText}
+                    onChange={(e) => handleChange('plateText', e.target.value.toUpperCase().slice(0, 6))}
+                    className="modern-input"
+                    maxLength={6}
+                    placeholder="12345"
                   />
                 </div>
               </>

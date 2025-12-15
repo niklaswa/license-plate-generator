@@ -30,7 +30,7 @@ export const LANGUAGE_FLAGS: Record<Language, string> = {
 };
 
 // Country codes type
-export type CountryCode = 'D' | 'A' | 'B' | 'BG' | 'CH' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GB' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'N' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S';
+export type CountryCode = 'D' | 'A' | 'B' | 'BG' | 'CH' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GB' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'N' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S' | 'FL';
 
 export interface Translations {
   // Page title
@@ -151,7 +151,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankreich', 'GB': 'Vereinigtes Königreich', 'GR': 'Griechenland', 'H': 'Ungarn', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Niederlande',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Rumänien', 'SK': 'Slowakei', 'SLO': 'Slowenien',
-      'E': 'Spanien', 'N': 'Norwegen', 'S': 'Schweden',
+      'E': 'Spanien', 'N': 'Norwegen', 'S': 'Schweden', 'FL': 'Liechtenstein',
     },
   },
   en: {
@@ -202,7 +202,7 @@ const translations: Record<Language, Translations> = {
       'F': 'France', 'GB': 'United Kingdom', 'GR': 'Greece', 'H': 'Hungary', 'IRL': 'Ireland', 'I': 'Italy',
       'LV': 'Latvia', 'LT': 'Lithuania', 'L': 'Luxembourg', 'M': 'Malta', 'NL': 'Netherlands',
       'PL': 'Poland', 'P': 'Portugal', 'RO': 'Romania', 'SK': 'Slovakia', 'SLO': 'Slovenia',
-      'E': 'Spain', 'N': 'Norway', 'S': 'Sweden',
+      'E': 'Spain', 'N': 'Norway', 'S': 'Sweden', 'FL': 'Liechtenstein',
     },
   },
   fr: {
@@ -253,7 +253,7 @@ const translations: Record<Language, Translations> = {
       'F': 'France', 'GB': 'Royaume-Uni', 'GR': 'Grèce', 'H': 'Hongrie', 'IRL': 'Irlande', 'I': 'Italie',
       'LV': 'Lettonie', 'LT': 'Lituanie', 'L': 'Luxembourg', 'M': 'Malte', 'NL': 'Pays-Bas',
       'PL': 'Pologne', 'P': 'Portugal', 'RO': 'Roumanie', 'SK': 'Slovaquie', 'SLO': 'Slovénie',
-      'E': 'Espagne', 'N': 'Norvège', 'S': 'Suède',
+      'E': 'Espagne', 'N': 'Norvège', 'S': 'Suède', 'FL': 'Liechtenstein',
     },
   },
   es: {
@@ -304,7 +304,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francia', 'GB': 'Reino Unido', 'GR': 'Grecia', 'H': 'Hungría', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Letonia', 'LT': 'Lituania', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Bajos',
       'PL': 'Polonia', 'P': 'Portugal', 'RO': 'Rumanía', 'SK': 'Eslovaquia', 'SLO': 'Eslovenia',
-      'E': 'España', 'N': 'Noruega', 'S': 'Suecia',
+      'E': 'España', 'N': 'Noruega', 'S': 'Suecia', 'FL': 'Liechtenstein',
     },
   },
   it: {
@@ -355,7 +355,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francia', 'GB': 'Regno Unito', 'GR': 'Grecia', 'H': 'Ungheria', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Lettonia', 'LT': 'Lituania', 'L': 'Lussemburgo', 'M': 'Malta', 'NL': 'Paesi Bassi',
       'PL': 'Polonia', 'P': 'Portogallo', 'RO': 'Romania', 'SK': 'Slovacchia', 'SLO': 'Slovenia',
-      'E': 'Spagna', 'N': 'Norvegia', 'S': 'Svezia',
+      'E': 'Spagna', 'N': 'Norvegia', 'S': 'Svezia', 'FL': 'Liechtenstein',
     },
   },
   nl: {
@@ -406,7 +406,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankrijk', 'GB': 'Verenigd Koninkrijk', 'GR': 'Griekenland', 'H': 'Hongarije', 'IRL': 'Ierland', 'I': 'Italië',
       'LV': 'Letland', 'LT': 'Litouwen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederland',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Roemenië', 'SK': 'Slowakije', 'SLO': 'Slovenië',
-      'E': 'Spanje', 'N': 'Noorwegen', 'S': 'Zweden',
+      'E': 'Spanje', 'N': 'Noorwegen', 'S': 'Zweden', 'FL': 'Liechtenstein',
     },
   },
   pl: {
@@ -457,7 +457,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francja', 'GB': 'Wielka Brytania', 'GR': 'Grecja', 'H': 'Węgry', 'IRL': 'Irlandia', 'I': 'Włochy',
       'LV': 'Łotwa', 'LT': 'Litwa', 'L': 'Luksemburg', 'M': 'Malta', 'NL': 'Holandia',
       'PL': 'Polska', 'P': 'Portugalia', 'RO': 'Rumunia', 'SK': 'Słowacja', 'SLO': 'Słowenia',
-      'E': 'Hiszpania', 'N': 'Norwegia', 'S': 'Szwecja',
+      'E': 'Hiszpania', 'N': 'Norwegia', 'S': 'Szwecja', 'FL': 'Liechtenstein',
     },
   },
   pt: {
@@ -508,7 +508,7 @@ const translations: Record<Language, Translations> = {
       'F': 'França', 'GB': 'Reino Unido', 'GR': 'Grécia', 'H': 'Hungria', 'IRL': 'Irlanda', 'I': 'Itália',
       'LV': 'Letónia', 'LT': 'Lituânia', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Baixos',
       'PL': 'Polónia', 'P': 'Portugal', 'RO': 'Roménia', 'SK': 'Eslováquia', 'SLO': 'Eslovénia',
-      'E': 'Espanha', 'N': 'Noruega', 'S': 'Suécia',
+      'E': 'Espanha', 'N': 'Noruega', 'S': 'Suécia', 'FL': 'Liechtenstein',
     },
   },
   sv: {
@@ -559,7 +559,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankrike', 'GB': 'Storbritannien', 'GR': 'Grekland', 'H': 'Ungern', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederländerna',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Rumänien', 'SK': 'Slovakien', 'SLO': 'Slovenien',
-      'E': 'Spanien', 'N': 'Norge', 'S': 'Sverige',
+      'E': 'Spanien', 'N': 'Norge', 'S': 'Sverige', 'FL': 'Liechtenstein',
     },
   },
   cs: {
@@ -610,7 +610,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francie', 'GB': 'Spojené království', 'GR': 'Řecko', 'H': 'Maďarsko', 'IRL': 'Irsko', 'I': 'Itálie',
       'LV': 'Lotyšsko', 'LT': 'Litva', 'L': 'Lucembursko', 'M': 'Malta', 'NL': 'Nizozemsko',
       'PL': 'Polsko', 'P': 'Portugalsko', 'RO': 'Rumunsko', 'SK': 'Slovensko', 'SLO': 'Slovinsko',
-      'E': 'Španělsko', 'N': 'Norsko', 'S': 'Švédsko',
+      'E': 'Španělsko', 'N': 'Norsko', 'S': 'Švédsko', 'FL': 'Lichtenštejnsko',
     },
   },
 };

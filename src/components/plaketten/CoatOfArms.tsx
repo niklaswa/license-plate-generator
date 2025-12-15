@@ -64,7 +64,7 @@ export default function CoatOfArms({
           }}
         />
       )}
-      {/* Dynamic shimmer overlay */}
+      {/* Dynamic shimmer overlay - uses mask-image to only show on SVG content */}
       {isHovering && (
         <div
           style={{
@@ -73,8 +73,16 @@ export default function CoatOfArms({
             left: 0,
             right: 0,
             bottom: 0,
-            background: `radial-gradient(ellipse at ${shimmerX}% ${shimmerY}%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%)`,
+            background: `radial-gradient(ellipse at ${shimmerX}% ${shimmerY}%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%)`,
             pointerEvents: 'none',
+            maskImage: `url(${src})`,
+            maskSize: 'contain',
+            maskPosition: 'center',
+            maskRepeat: 'no-repeat',
+            WebkitMaskImage: `url(${src})`,
+            WebkitMaskSize: 'contain',
+            WebkitMaskPosition: 'center',
+            WebkitMaskRepeat: 'no-repeat',
           }}
         />
       )}
