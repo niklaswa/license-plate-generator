@@ -2,16 +2,16 @@
 
 import React, { forwardRef, useRef, useState, useLayoutEffect, useEffect } from 'react';
 import { GermanPlateConfig, PlateStyle, GermanState, AustrianState, SwissCanton } from '@/types/plate';
-import EUBand from './EUBand';
-import UKBand from './UKBand';
-import StatePlakette from './StatePlakette';
-import AustrianStatePlakette from './AustrianStatePlakette';
-import HungarianCoatOfArms from './HungarianCoatOfArms';
-import SlovakCoatOfArms from './SlovakCoatOfArms';
-import SwissCoatOfArms from './SwissCoatOfArms';
-import SwissCantonPlakette from './SwissCantonPlakette';
-import HUPlakette from './HUPlakette';
-import BundeswehrPlakette from './BundeswehrPlakette';
+import EUBand from './bands/EUBand';
+import UKBand from './bands/UKBand';
+import StatePlakette from './plaketten/StatePlakette';
+import AustrianStatePlakette from './plaketten/AustrianStatePlakette';
+import HungarianCoatOfArms from './plaketten/HungarianCoatOfArms';
+import SlovakCoatOfArms from './plaketten/SlovakCoatOfArms';
+import SwissCoatOfArms from './plaketten/SwissCoatOfArms';
+import SwissCantonPlakette from './plaketten/SwissCantonPlakette';
+import HUPlakette from './plaketten/HUPlakette';
+import BundeswehrPlakette from './plaketten/BundeswehrPlakette';
 
 interface LicensePlateProps {
   config: GermanPlateConfig;

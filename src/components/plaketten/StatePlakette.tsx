@@ -1,17 +1,43 @@
 'use client';
 
 import React from 'react';
+import { GermanState, STATE_NAMES } from '@/types/plate';
 
-interface BundeswehrPlaketteProps {
+interface StatePlaketteProps {
+  state: GermanState;
+  city?: string;
   scale?: number;
   isHovering?: boolean;
   tilt?: { rotateX: number; rotateY: number };
 }
 
-const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHovering = false, tilt = { rotateX: 0, rotateY: 0 } }) => {
+// Mapping from state code to SVG filename
+const STATE_IMAGE_MAP: Record<GermanState, string> = {
+  BW: 'baden-wuerttemberg',
+  BY: 'bayern',
+  BE: 'berlin',
+  BB: 'brandenburg',
+  HB: 'bremen',
+  HH: 'hamburg',
+  HE: 'hessen',
+  MV: 'mecklenburg-vorpommern',
+  NI: 'niedersachsen',
+  NW: 'nordrhein-westfalen',
+  RP: 'rheinland-pfalz',
+  SL: 'saarland',
+  SN: 'sachsen',
+  ST: 'sachsen-anhalt',
+  SH: 'schleswig-holstein',
+  TH: 'thueringen',
+};
+
+export default function StatePlakette({ state, city = '', scale = 1, isHovering = false, tilt = { rotateX: 0, rotateY: 0 } }: StatePlaketteProps) {
   const size = 42 * scale;
-  const topText = 'BUNDESWEHR';
-  const bottomText = 'ZULASSUNGSSTELLE';
+  
+  // Get image path and names for German states
+  const imagePath = `/coa/de/${STATE_IMAGE_MAP[state]}.svg`;
+  const cityText = city.toUpperCase();
+  const stateName = STATE_NAMES[state].toUpperCase();
   
   // Calculate shimmer position based on tilt
   const shimmerX1 = 50 + (tilt.rotateY * 2);
@@ -19,9 +45,26 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
   const shimmerX2 = 50 - (tilt.rotateY * 2);
   const shimmerY2 = 50 - (tilt.rotateX * 2);
   
-  // Font sizes
-  const topFontSize = 7;
-  const bottomFontSize = 5.5;
+  // Calculate font size based on text length for city - larger base
+  const baseFontSize = 8;
+  const cityFontSize = cityText.length > 20 
+    ? baseFontSize * 0.55
+    : cityText.length > 15 
+      ? baseFontSize * 0.7 
+      : cityText.length > 10 
+        ? baseFontSize * 0.85 
+        : cityText.length > 7 
+          ? baseFontSize * 1.0 
+          : baseFontSize * 1.2;
+  
+  // Calculate font size for state name - larger base
+  const stateFontSize = stateName.length > 18
+    ? baseFontSize * 0.45
+    : stateName.length > 12
+      ? baseFontSize * 0.55
+      : stateName.length > 8
+        ? baseFontSize * 0.7
+        : baseFontSize * 0.9;
   
   return (
     <div
@@ -40,7 +83,7 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
       >
         <defs>
           {/* Holographic shimmer gradient */}
-          <linearGradient id="shimmer-bundeswehr" x1={`${shimmerX1}%`} y1={`${shimmerY1}%`} x2={`${shimmerX2}%`} y2={`${shimmerY2}%`}>
+          <linearGradient id={`shimmer-${state}`} x1={`${shimmerX1}%`} y1={`${shimmerY1}%`} x2={`${shimmerX2}%`} y2={`${shimmerY2}%`}>
             <stop offset="0%" stopColor="rgba(255,255,255,0)" />
             <stop offset="30%" stopColor="rgba(150,200,255,0.15)" />
             <stop offset="50%" stopColor="rgba(255,150,255,0.2)" />
@@ -48,7 +91,7 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
             <stop offset="100%" stopColor="rgba(255,255,255,0)" />
           </linearGradient>
           {/* Security pattern - guilloche style */}
-          <pattern id="securityPattern-bundeswehr" patternUnits="userSpaceOnUse" width="20" height="20">
+          <pattern id={`securityPattern-${state}`} patternUnits="userSpaceOnUse" width="20" height="20">
             <path 
               d="M 0,10 Q 5,0 10,10 T 20,10" 
               fill="none" 
@@ -69,7 +112,7 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
             />
           </pattern>
           {/* Radial security lines */}
-          <pattern id="radialSecurity-bundeswehr" patternUnits="userSpaceOnUse" width="100" height="100">
+          <pattern id={`radialSecurity-${state}`} patternUnits="userSpaceOnUse" width="100" height="100">
             {[...Array(36)].map((_, i) => {
               const x2 = Math.round((50 + 50 * Math.cos((i * 10 * Math.PI) / 180)) * 1000) / 1000;
               const y2 = Math.round((50 + 50 * Math.sin((i * 10 * Math.PI) / 180)) * 1000) / 1000;
@@ -91,46 +134,46 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
         {/* Base circle with light gray */}
         <circle cx="50" cy="50" r="49" fill="#e8e8e8" stroke="#333" strokeWidth="1.5" />
         
-        {/* Security pattern layer */}
-        <circle cx="50" cy="50" r="47" fill="url(#securityPattern-bundeswehr)" />
+        {/* Security pattern layer - covers entire circle */}
+        <circle cx="50" cy="50" r="47" fill={`url(#securityPattern-${state})`} />
         
         {/* Inner rings */}
         <circle cx="50" cy="50" r="42" fill="none" stroke="#bbb" strokeWidth="0.5" />
         <circle cx="50" cy="50" r="35" fill="none" stroke="#ccc" strokeWidth="0.3" />
         
-        {/* Text paths */}
+        {/* State name at top (curved) - closer to edge */}
         <defs>
           <path
-            id="topArc-bundeswehr"
+            id={`stateArc-${state}`}
             d="M 8,52 A 42,42 0 0,1 92,52"
             fill="none"
           />
           <path
-            id="bottomArc-bundeswehr"
+            id={`cityArc-${state}`}
             d="M 6,50 A 44,44 0 0,0 94,50"
             fill="none"
           />
         </defs>
         
-        {/* BUNDESWEHR at top */}
+        {/* State name at top */}
         <text
-          fontSize={topFontSize}
+          fontSize={stateFontSize}
           fontWeight="bold"
           fontFamily="Arial, sans-serif"
           fill="#000"
         >
           <textPath
-            href="#topArc-bundeswehr"
+            href={`#stateArc-${state}`}
             startOffset="50%"
             textAnchor="middle"
           >
-            {topText}
+            {stateName}
           </textPath>
         </text>
         
-        {/* Bundesadler in center */}
+        {/* Coat of arms in center - no white background, pattern shows through */}
         <image
-          href="/coa/bundesadler.svg"
+          href={imagePath}
           x="25"
           y="25"
           width="50"
@@ -138,27 +181,27 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
           preserveAspectRatio="xMidYMid meet"
         />
         
-        {/* ZULASSUNGSSTELLE at bottom */}
-        <text
-          fontSize={bottomFontSize}
-          fontWeight="bold"
-          fontFamily="Arial, sans-serif"
-          fill="#000"
-        >
-          <textPath
-            href="#bottomArc-bundeswehr"
-            startOffset="50%"
-            textAnchor="middle"
+        {/* City name at bottom (curved) */}
+        {cityText && (
+          <text
+            fontSize={cityFontSize}
+            fontWeight="bold"
+            fontFamily="Arial, sans-serif"
+            fill="#000"
           >
-            {bottomText}
-          </textPath>
-        </text>
+            <textPath
+              href={`#cityArc-${state}`}
+              startOffset="50%"
+              textAnchor="middle"
+            >
+              {cityText}
+            </textPath>
+          </text>
+        )}
         
         {/* Holographic shimmer overlay - only visible on hover */}
-        {isHovering && <circle cx="50" cy="50" r="47" fill="url(#shimmer-bundeswehr)" />}
+        {isHovering && <circle cx="50" cy="50" r="47" fill={`url(#shimmer-${state})`} />}
       </svg>
     </div>
   );
-};
-
-export default BundeswehrPlakette;
+}
