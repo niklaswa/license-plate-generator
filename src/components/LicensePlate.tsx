@@ -122,6 +122,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
       if (typeof document !== 'undefined' && document.fonts) {
         const fontPromises = [
           document.fonts.load('105px EuroPlate'),
+          document.fonts.load('105px "Alte DIN 1451"'),
           document.fonts.load('105px "Google Sans"'),
           document.fonts.load('105px Tratex'),
           document.fonts.load('105px UKNumberPlate'),
@@ -235,6 +236,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
       if (country === 'S') return 'Tratex, Normal';
       if (country === 'N') return 'MyriadPro, sans-serif';
       if (country === 'GB') return 'UKNumberPlate, sans-serif';
+      if (country === 'A') return '"Alte DIN 1451", sans-serif';
       return 'EuroPlate, sans-serif';
     };
     

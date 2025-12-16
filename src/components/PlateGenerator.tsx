@@ -260,9 +260,18 @@ export default function PlateGenerator() {
     if (!isInitialized) return;
     setConfig(prev => {
       const newConfig = { ...prev };
+
+      // --- ADDED: Austria Green Color Logic ---
+      if (prev.country === 'A') {
+        newConfig.fontColor = '#008351'; // Austrian EV Green
+      } else if (prev.fontColor === '#008351') {
+
+        newConfig.fontColor = '#000000';
+      }
+      // ----------------------------------------
+
       if (prev.country === 'S') {
         if (prev.plateType === 'normal') {
-          // Set default normal format
           newConfig.plateText = 'ABC123';
         }
       } else if (prev.country === 'DK') {
