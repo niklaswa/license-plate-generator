@@ -1,7 +1,7 @@
 // Top 10 EU Languages: DE, EN, FR, ES, IT, NL, PL, PT, SV, CS
-export type Language = 'de' | 'en' | 'fr' | 'es' | 'it' | 'nl' | 'pl' | 'pt' | 'sv' | 'cs';
+export type Language = 'de' | 'en' | 'fr' | 'es' | 'it' | 'nl' | 'pl' | 'pt' | 'sv' | 'cs' | 'hr';
 
-export const SUPPORTED_LANGUAGES: Language[] = ['de', 'en', 'fr', 'es', 'it', 'nl', 'pl', 'pt', 'sv', 'cs'];
+export const SUPPORTED_LANGUAGES: Language[] = ['de', 'en', 'fr', 'es', 'it', 'nl', 'pl', 'pt', 'sv', 'cs', 'hr'];
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
   de: 'Deutsch',
@@ -14,6 +14,7 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
   pt: 'Português',
   sv: 'Svenska',
   cs: 'Čeština',
+  hr: 'Hrvatski',
 };
 
 export const LANGUAGE_FLAGS: Record<Language, string> = {
@@ -27,6 +28,7 @@ export const LANGUAGE_FLAGS: Record<Language, string> = {
   pt: '🇵🇹',
   sv: '🇸🇪',
   cs: '🇨🇿',
+  hr: '🇭🇷',
 };
 
 // Country codes type
@@ -611,6 +613,57 @@ const translations: Record<Language, Translations> = {
       'LV': 'Lotyšsko', 'LT': 'Litva', 'L': 'Lucembursko', 'M': 'Malta', 'NL': 'Nizozemsko',
       'PL': 'Polsko', 'P': 'Portugalsko', 'RO': 'Rumunsko', 'SK': 'Slovensko', 'SLO': 'Slovinsko',
       'E': 'Španělsko', 'N': 'Norsko', 'S': 'Švédsko', 'FL': 'Lichtenštejnsko',
+    },
+  },
+  hr: {
+    pageTitle: 'Generator registarskih pločica',
+    configureTitle: 'Konfigurirajte registarsku pločicu',
+    previewTitle: 'Pregled',
+    country: 'Država',
+    cityCode: 'Mjesto',
+    letters: 'Slova',
+    numbers: 'Brojevi',
+    suffix: 'Sufiks',
+    state: 'Savezna država',
+    city: 'Grad',
+    plateWidth: 'Širina',
+    plateStyle: 'Stil',
+    plateType: 'Tip registarske pločice',
+    huYear: 'TP Godina',
+    huMonth: 'TP Mjesec',
+    showStatePlakette: 'Prikaži grb',
+    showHUPlakette: 'Prikaži naljepnicu tehničkog',
+    plateText: 'Tekst registarske pločice',
+    fontColor: 'Boja fonta',
+    backgroundColor: 'Boja pozadine',
+    rightBandText: 'Regija/kod',
+    widthStandard: 'Standard (520mm)',
+    widthCompact: 'Kompaktno',
+    styleNormal: 'Normalno (bijelo)',
+    style3DBlack: '3D crna sjajno',
+    style3DCarbon: '3D karbonski sjajno',
+    style3DBlackMatte: '3D crno mat',
+    style3DCarbonMatte: '3D karbonski mat',
+    plateTypeNormal: 'Normalno',
+    plateTypePersonalized: 'Personalizirano',
+    lettersAndNumbers: 'Slova & Brojevi',
+    personalizedText: 'Personalizirani Tekst',
+    exportPNG: 'Spremi kao PNG',
+    exportFailed: 'Spremanje neuspješno. Pokušajte ponovo.',
+    wappenAttribution: 'Grb: Wikimedia Commons (Public Domain / CC)',
+    usbInstallTitle: 'Kako dodati u Teslu?',
+    usbInstallStep1: 'Napravite mapu na USB-u pod nazivom "LicensePlate".',
+    usbInstallStep2: 'Dodajte do 10 prilagođenih PNG pozadinskih slika u mapu. Svaka slika treba biti manja od 0,5 MB. Naziv datoteke mora sadržavati manje od 32 znaka, uključujući slova i brojeve.',
+    usbInstallStep3: 'Preporučena rezolucija za svaku sliku je 420 x 100 piksela. Maksimalna rezolucija je 420 x 200 piksela.',
+    usbInstallStep4: 'Umetnite pripremljeni USB u priključak vozila i idite na Pozadina → Slika. Ako datoteke na USB pogonu zadovoljavaju uvjete, prilagođene slike bit će dostupne za odabir iz izbornika.',
+    months: ['sij', 'vel', 'ožu', 'tra', 'svi', 'lip', 'srp', 'kol', 'ruj', 'lis', 'stu', 'pro'],
+    countries: {
+      'D': 'Njemačka', 'A': 'Austrija', 'B': 'Belgija', 'BG': 'Bugarska', 'CH': 'Švicarska', 'HR': 'Hrvatska',
+      'CY': 'Cipar', 'CZ': 'Češka', 'DK': 'Danska', 'EST': 'Estonija', 'FIN': 'Finska',
+      'F': 'Francuska', 'GB': 'Ujedinjeno Kraljevstvo', 'GR': 'Grčka', 'H': 'Mađarska', 'IRL': 'Irska', 'I': 'Italija',
+      'LV': 'Latvija', 'LT': 'Litva', 'L': 'Luksemburg', 'M': 'Malta', 'NL': 'Nizozemska',
+      'PL': 'Poljska', 'P': 'Portugal', 'RO': 'Rumunjska', 'SK': 'Slovačka', 'SLO': 'Slovenija',
+      'E': 'Spanjolska', 'N': 'Norveška', 'S': 'Švedska', 'FL': 'Lihtenštajn',
     },
   },
 };

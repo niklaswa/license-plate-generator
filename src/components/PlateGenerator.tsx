@@ -82,7 +82,7 @@ function getCountryDefaults(country: Country): { fontColor: string; backgroundCo
     case 'H':   // Hungary
     case 'RO':  // Romania
     case 'BG':  // Bulgaria
-    case 'HR':  // Croatia
+    case 'HR':  // Croatia (+ red blue stripes handled in LicensePlate)
     case 'SLO': // Slovenia
     case 'GR':  // Greece
     case 'DK':  // Denmark
@@ -451,7 +451,7 @@ export default function PlateGenerator() {
                     backgroundColor: countryDefaults.backgroundColor,
                     rightBandText: countryDefaults.rightBandText,
                     // Reset state to appropriate default when switching countries
-                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : newCountry === 'FL' ? 'FL' : newCountry === 'CH' ? 'ZH' : 'NW',
+                    state: newCountry === 'A' ? 'W' : newCountry === 'H' ? 'HU' : newCountry === 'SK' ? 'SK' : newCountry === 'FL' ? 'FL' : newCountry === 'HR' ? 'HR' : newCountry === 'CH' ? 'ZH' : 'NW',
                     // Reset cityCode for Swiss plates to canton code
                     cityCode: newCountry === 'CH' ? 'ZH' : prev.cityCode,
                     numbers: newCountry === 'CH' ? '123456' : prev.numbers,
@@ -470,7 +470,7 @@ export default function PlateGenerator() {
             </div>
 
             {/* Plate Text - for countries without coat of arms */}
-            {!['D', 'A', 'H', 'SK', 'CH', 'FL'].includes(config.country) && (
+            {!['D', 'A', 'H', 'SK', 'CH', 'FL', 'HR'].includes(config.country) && (
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                   {config.country === 'S' ? (config.plateType === 'normal' ? t.lettersAndNumbers : t.personalizedText) : t.plateText}
@@ -573,6 +573,38 @@ export default function PlateGenerator() {
                   placeholder="AB12345"
                 />
               </div>
+            )}
+
+            {/* Croatian plate inputs - City code + Free text */}
+            {config.country === 'HR' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                    Stadtkennzeichen
+                  </label>
+                  <input
+                    type="text"
+                    value={config.cityCode}
+                    onChange={(e) => handleChange('cityCode', e.target.value.toUpperCase().slice(0, 3))}
+                    className="modern-input"
+                    maxLength={3}
+                    placeholder="ZG, ST..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                    Buchstaben- und Zahlenkombination
+                  </label>
+                  <input
+                    type="text"
+                    value={config.plateText}
+                    onChange={(e) => handleChange('plateText', e.target.value.toUpperCase().slice(0, 7))}
+                    className="modern-input"
+                    maxLength={7}
+                    placeholder="ABC123"
+                  />
+                </div>
+              </>
             )}
 
             {/* Hungarian plate inputs - City code + Free text */}

@@ -7,6 +7,7 @@ import UKBand from './bands/UKBand';
 import NorwayBand from './bands/NorwayBand';
 import StatePlakette from './plaketten/StatePlakette';
 import AustrianStatePlakette from './plaketten/AustrianStatePlakette';
+import CroatianCoatOfArms from './plaketten/CroatianCoatOfArms';
 import HungarianCoatOfArms from './plaketten/HungarianCoatOfArms';
 import SlovakCoatOfArms from './plaketten/SlovakCoatOfArms';
 import LiechtensteinCoatOfArms from './plaketten/LiechtensteinCoatOfArms';
@@ -53,12 +54,14 @@ function getPlateStyles(style: PlateStyle, scale: number) {
 // Country-specific plate features (visual elements, not colors - those come from config)
 function getCountryFeatures(country: string): { 
   hasRedStripes: boolean;      // Austria
+  hasRedBlueStripes: boolean;  // Croatia
   hasRightBand: boolean;       // France, Italy, Portugal
   rightBandColor: string;      // Color for right band
   rightBandTextColor: string;  // Text color for right band
 } {
   const defaultFeatures = {
     hasRedStripes: false,
+    hasRedBlueStripes: false,
     hasRightBand: false,
     rightBandColor: '#003399',
     rightBandTextColor: '#FFFFFF',
@@ -74,6 +77,8 @@ function getCountryFeatures(country: string): {
         rightBandColor: '#003399',
         rightBandTextColor: '#FFFFFF',
       };
+    case 'HR': // Croatia - has red and blue stripes top and bottom
+      return { ...defaultFeatures, hasRedBlueStripes: true };
     case 'I': // Italy - has right blue band with region code
       return { 
         ...defaultFeatures, 
@@ -339,7 +344,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
               width: `${plateWidth}px`,
               height: `${plateHeight}px`,
               backgroundColor: plateBgColor,
-              border: `${borderWidth}px solid ${country === 'A' ? 'transparent' : styles.borderColor}`,
+              border: `${borderWidth}px solid ${(country === 'A' || country === 'HR') ? 'transparent' : styles.borderColor}`,
               borderRadius: `${8 * scale}px`,
               fontFamily: getFontFamily(),
               transformStyle: 'preserve-3d',
@@ -388,6 +393,50 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
                 right: 0,
                 height: `${redStripeHeight}px`,
                 backgroundColor: '#C8102E',
+                zIndex: 0,
+              }} />
+            </>
+          )}
+
+          {/* Croatian red blue stripes - double stripes top and bottom, full width */}
+          {countryFeatures.hasRedBlueStripes && (
+            <>
+              {/* Top stripes - spacing equals stripe height */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: `${redStripeHeight}px`,
+                backgroundColor: '#FF0000',
+                zIndex: 0,
+              }} />
+              <div style={{
+                position: 'absolute',
+                top: `${redStripeHeight * 2}px`,
+                left: 0,
+                right: 0,
+                height: `${redStripeHeight}px`,
+                backgroundColor: '#171796',
+                zIndex: 0,
+              }} />
+              {/* Bottom stripes - spacing equals stripe height */}
+              <div style={{
+                position: 'absolute',
+                bottom: `${redStripeHeight * 2}px`,
+                left: 0,
+                right: 0,
+                height: `${redStripeHeight}px`,
+                backgroundColor: '#FF0000',
+                zIndex: 0,
+              }} />
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: `${redStripeHeight}px`,
+                backgroundColor: '#171796',
                 zIndex: 0,
               }} />
             </>
@@ -441,16 +490,16 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
             <div style={{
               position: 'absolute',
               left: 0,
-              top: country === 'A' ? `${redStripeHeight * 3}px` : 0,
-              bottom: country === 'A' ? `${redStripeHeight * 3}px` : 0,
+              top: (country === 'A' || country === 'HR') ? `${redStripeHeight * 3}px` : 0,
+              bottom: (country === 'A' || country === 'HR') ? `${redStripeHeight * 3}px` : 0,
               width: `${euBandWidth}px`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: country === 'A' ? `0 ${3 * scale}px` : '0',
+              padding: (country === 'A' || country === 'HR') ? `0 ${3 * scale}px` : '0',
               zIndex: 2,
             }}>
-              <EUBand scale={scale} countryCode={country} height={country === 'A' ? '100%' : undefined} noBorderRadius={country === 'A'} showDinGepruft={isGermany} borderRadius={5} />
+              <EUBand scale={scale} countryCode={country} height={(country === 'A' || country === 'HR') ? '100%' : undefined} noBorderRadius={(country === 'A' || country === 'HR')} showDinGepruft={isGermany} borderRadius={5} />
             </div>
           )}
           
@@ -608,6 +657,22 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
                   {/* Free text for Austria */}
                   <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{plateText || ''}</span>
                 </>
+                ) : country === 'HR' ? (
+                  /* Croatian format with national coat of arms */
+                  <>
+                    {/* City code */}
+                    <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{cityCode}</span>
+                    
+                    {/* Croatian national coat of arms */}
+                    {showStatePlakette && (
+                      <div style={{ transformStyle: 'preserve-3d' }}>
+                        <CroatianCoatOfArms scale={scale * 1.3} isHovering={isHovering} tilt={tilt} />
+                      </div>
+                    )}
+                    
+                    {/* Free text for Croatia */}
+                    <span style={{ ...textStyle, transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }}>{plateText || ''}</span>
+                  </>
               ) : country === 'H' ? (
                 /* Hungarian format with national coat of arms */
                 <>

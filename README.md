@@ -32,6 +32,10 @@ A Next.js application for generating EU license plates as PNG images – optimiz
 - All 9 Bundesländer with coat of arms
 - Authentic red-stripe design
 
+### 🇭🇷 Croatian Plates
+- National coat of arms support
+- Authentic red-blue-stripes design
+
 ### 🇭🇺🇸🇰 Hungarian & Slovak Plates
 - National coat of arms support
 
