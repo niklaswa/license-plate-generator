@@ -228,7 +228,7 @@ const LicensePlate = forwardRef<HTMLDivElement, LicensePlateProps>(
       if (country === 'S') return 'Tratex, Normal';
       if (country === 'N') return 'MyriadPro, sans-serif';
       if (country === 'GB') return 'UKNumberPlate, sans-serif';
-      if (country === 'A') return '"Alte DIN 1451", sans-serif';
+      if (country === 'A' || country === 'CZ') return '"Alte DIN 1451", sans-serif';
       return 'EuroPlate, sans-serif';
     };
     
