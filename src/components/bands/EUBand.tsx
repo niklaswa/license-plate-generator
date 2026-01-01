@@ -17,9 +17,9 @@ export default function EUBand({ scale = 1, countryCode = 'D', height, noBorderR
   const defaultHeight = 110 * scale;
   const actualHeight = height || defaultHeight;
   const radius = borderRadius * scale;
-  
+
   return (
-    <div 
+    <div
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -44,7 +44,7 @@ export default function EUBand({ scale = 1, countryCode = 'D', height, noBorderR
         >
           <g fill="#FFCC00">
             {/* 12 stars in a circle - all pointing upward */}
-            {Array.from({ length: 12 }).map((_, i) => {
+            {countryCode !== 'TR' && Array.from({ length: 12 }).map((_, i) => {
               const angle = (i * 30 - 90) * (Math.PI / 180);
               const cx = Math.round((18 + 13 * Math.cos(angle)) * 1000) / 1000;
               const cy = Math.round((18 + 13 * Math.sin(angle)) * 1000) / 1000;
@@ -57,7 +57,7 @@ export default function EUBand({ scale = 1, countryCode = 'D', height, noBorderR
             })}
           </g>
         </svg>
-        
+
         {/* DIN-GEPRÜFT seal in center of stars for German plates */}
         {showDinGepruft && (
           <div style={{
@@ -75,25 +75,25 @@ export default function EUBand({ scale = 1, countryCode = 'D', height, noBorderR
             opacity: 0.25,
             textShadow: `0 ${0.5 * scale}px ${0.5 * scale}px rgba(0,0,0,0.3), 0 ${-0.3 * scale}px 0 rgba(255,255,255,0.1)`,
           }}>
-            <span style={{ 
+            <span style={{
               letterSpacing: `${0.4 * scale}px`,
               fontSize: `${5.5 * scale}px`,
             }}>DIN</span>
-            <span style={{ 
-              letterSpacing: `${0.2 * scale}px`, 
+            <span style={{
+              letterSpacing: `${0.2 * scale}px`,
               fontSize: `${3.5 * scale}px`,
               fontWeight: 'normal',
             }}>GEPRÜFT</span>
-            <span style={{ 
-              letterSpacing: `${0.1 * scale}px`, 
-              fontSize: `${3 * scale}px`, 
+            <span style={{
+              letterSpacing: `${0.1 * scale}px`,
+              fontSize: `${3 * scale}px`,
               fontWeight: 'normal',
               marginTop: `${0.3 * scale}px`,
             }}>74069/30</span>
           </div>
         )}
       </div>
-      
+
       {/* Country code */}
       <span
         style={{
