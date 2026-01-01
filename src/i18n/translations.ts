@@ -1,7 +1,7 @@
 // Top 10 EU Languages: DE, EN, FR, ES, IT, NL, PL, PT, SV, CS
-export type Language = 'de' | 'en' | 'fr' | 'es' | 'it' | 'nl' | 'pl' | 'pt' | 'sv' | 'cs' | 'hr';
+export type Language = 'de' | 'en' | 'fr' | 'es' | 'it' | 'nl' | 'pl' | 'pt' | 'sv' | 'cs' | 'hr' | 'tr';
 
-export const SUPPORTED_LANGUAGES: Language[] = ['de', 'en', 'fr', 'es', 'it', 'nl', 'pl', 'pt', 'sv', 'cs', 'hr'];
+export const SUPPORTED_LANGUAGES: Language[] = ['de', 'en', 'fr', 'es', 'it', 'nl', 'pl', 'pt', 'sv', 'cs', 'hr', 'tr'];
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
   de: 'Deutsch',
@@ -15,6 +15,7 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
   sv: 'Svenska',
   cs: 'Čeština',
   hr: 'Hrvatski',
+  tr: 'Türkçe',
 };
 
 export const LANGUAGE_FLAGS: Record<Language, string> = {
@@ -29,10 +30,11 @@ export const LANGUAGE_FLAGS: Record<Language, string> = {
   sv: '🇸🇪',
   cs: '🇨🇿',
   hr: '🇭🇷',
+  tr: 'TR',
 };
 
 // Country codes type
-export type CountryCode = 'D' | 'A' | 'B' | 'BG' | 'CH' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GB' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'N' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S' | 'FL';
+export type CountryCode = 'D' | 'A' | 'B' | 'BG' | 'CH' | 'HR' | 'CY' | 'CZ' | 'DK' | 'EST' | 'FIN' | 'F' | 'GB' | 'GR' | 'H' | 'IRL' | 'I' | 'LV' | 'LT' | 'L' | 'M' | 'N' | 'NL' | 'PL' | 'P' | 'RO' | 'SK' | 'SLO' | 'E' | 'S' | 'FL'| 'TR';
 
 export interface Translations {
   // Page title
@@ -171,7 +173,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankreich', 'GB': 'Vereinigtes Königreich', 'GR': 'Griechenland', 'H': 'Ungarn', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Niederlande',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Rumänien', 'SK': 'Slowakei', 'SLO': 'Slowenien',
-      'E': 'Spanien', 'N': 'Norwegen', 'S': 'Schweden', 'FL': 'Liechtenstein',
+      'E': 'Spanien', 'N': 'Norwegen', 'S': 'Schweden', 'FL': 'Liechtenstein', 'TR': 'Türkei',
     },
   },
   en: {
@@ -231,7 +233,7 @@ const translations: Record<Language, Translations> = {
       'F': 'France', 'GB': 'United Kingdom', 'GR': 'Greece', 'H': 'Hungary', 'IRL': 'Ireland', 'I': 'Italy',
       'LV': 'Latvia', 'LT': 'Lithuania', 'L': 'Luxembourg', 'M': 'Malta', 'NL': 'Netherlands',
       'PL': 'Poland', 'P': 'Portugal', 'RO': 'Romania', 'SK': 'Slovakia', 'SLO': 'Slovenia',
-      'E': 'Spain', 'N': 'Norway', 'S': 'Sweden', 'FL': 'Liechtenstein',
+      'E': 'Spain', 'N': 'Norway', 'S': 'Sweden', 'FL': 'Liechtenstein', 'TR': 'Turkey',
     },
   },
   fr: {
@@ -291,7 +293,7 @@ const translations: Record<Language, Translations> = {
       'F': 'France', 'GB': 'Royaume-Uni', 'GR': 'Grèce', 'H': 'Hongrie', 'IRL': 'Irlande', 'I': 'Italie',
       'LV': 'Lettonie', 'LT': 'Lituanie', 'L': 'Luxembourg', 'M': 'Malte', 'NL': 'Pays-Bas',
       'PL': 'Pologne', 'P': 'Portugal', 'RO': 'Roumanie', 'SK': 'Slovaquie', 'SLO': 'Slovénie',
-      'E': 'Espagne', 'N': 'Norvège', 'S': 'Suède', 'FL': 'Liechtenstein',
+      'E': 'Espagne', 'N': 'Norvège', 'S': 'Suède', 'FL': 'Liechtenstein', 'TR': 'Turquie',
     },
   },
   es: {
@@ -351,7 +353,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francia', 'GB': 'Reino Unido', 'GR': 'Grecia', 'H': 'Hungría', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Letonia', 'LT': 'Lituania', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Bajos',
       'PL': 'Polonia', 'P': 'Portugal', 'RO': 'Rumanía', 'SK': 'Eslovaquia', 'SLO': 'Eslovenia',
-      'E': 'España', 'N': 'Noruega', 'S': 'Suecia', 'FL': 'Liechtenstein',
+      'E': 'España', 'N': 'Noruega', 'S': 'Suecia', 'FL': 'Liechtenstein', 'TR': 'Turquía',
     },
   },
   it: {
@@ -411,7 +413,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francia', 'GB': 'Regno Unito', 'GR': 'Grecia', 'H': 'Ungheria', 'IRL': 'Irlanda', 'I': 'Italia',
       'LV': 'Lettonia', 'LT': 'Lituania', 'L': 'Lussemburgo', 'M': 'Malta', 'NL': 'Paesi Bassi',
       'PL': 'Polonia', 'P': 'Portogallo', 'RO': 'Romania', 'SK': 'Slovacchia', 'SLO': 'Slovenia',
-      'E': 'Spagna', 'N': 'Norvegia', 'S': 'Svezia', 'FL': 'Liechtenstein',
+      'E': 'Spagna', 'N': 'Norvegia', 'S': 'Svezia', 'FL': 'Liechtenstein', 'TR': 'Turchia',
     },
   },
   nl: {
@@ -471,7 +473,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankrijk', 'GB': 'Verenigd Koninkrijk', 'GR': 'Griekenland', 'H': 'Hongarije', 'IRL': 'Ierland', 'I': 'Italië',
       'LV': 'Letland', 'LT': 'Litouwen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederland',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Roemenië', 'SK': 'Slowakije', 'SLO': 'Slovenië',
-      'E': 'Spanje', 'N': 'Noorwegen', 'S': 'Zweden', 'FL': 'Liechtenstein',
+      'E': 'Spanje', 'N': 'Noorwegen', 'S': 'Zweden', 'FL': 'Liechtenstein', 'TR': 'Turkije',
     },
   },
   pl: {
@@ -531,7 +533,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francja', 'GB': 'Wielka Brytania', 'GR': 'Grecja', 'H': 'Węgry', 'IRL': 'Irlandia', 'I': 'Włochy',
       'LV': 'Łotwa', 'LT': 'Litwa', 'L': 'Luksemburg', 'M': 'Malta', 'NL': 'Holandia',
       'PL': 'Polska', 'P': 'Portugalia', 'RO': 'Rumunia', 'SK': 'Słowacja', 'SLO': 'Słowenia',
-      'E': 'Hiszpania', 'N': 'Norwegia', 'S': 'Szwecja', 'FL': 'Liechtenstein',
+      'E': 'Hiszpania', 'N': 'Norwegia', 'S': 'Szwecja', 'FL': 'Liechtenstein', 'TR': 'Turcja',
     },
   },
   pt: {
@@ -591,7 +593,7 @@ const translations: Record<Language, Translations> = {
       'F': 'França', 'GB': 'Reino Unido', 'GR': 'Grécia', 'H': 'Hungria', 'IRL': 'Irlanda', 'I': 'Itália',
       'LV': 'Letónia', 'LT': 'Lituânia', 'L': 'Luxemburgo', 'M': 'Malta', 'NL': 'Países Baixos',
       'PL': 'Polónia', 'P': 'Portugal', 'RO': 'Roménia', 'SK': 'Eslováquia', 'SLO': 'Eslovénia',
-      'E': 'Espanha', 'N': 'Noruega', 'S': 'Suécia', 'FL': 'Liechtenstein',
+      'E': 'Espanha', 'N': 'Noruega', 'S': 'Suécia', 'FL': 'Liechtenstein', 'TR': 'Turquia',
     },
   },
   sv: {
@@ -651,7 +653,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Frankrike', 'GB': 'Storbritannien', 'GR': 'Grekland', 'H': 'Ungern', 'IRL': 'Irland', 'I': 'Italien',
       'LV': 'Lettland', 'LT': 'Litauen', 'L': 'Luxemburg', 'M': 'Malta', 'NL': 'Nederländerna',
       'PL': 'Polen', 'P': 'Portugal', 'RO': 'Rumänien', 'SK': 'Slovakien', 'SLO': 'Slovenien',
-      'E': 'Spanien', 'N': 'Norge', 'S': 'Sverige', 'FL': 'Liechtenstein',
+      'E': 'Spanien', 'N': 'Norge', 'S': 'Sverige', 'FL': 'Liechtenstein', 'TR': 'Turkiet',
     },
   },
   cs: {
@@ -711,7 +713,7 @@ const translations: Record<Language, Translations> = {
       'F': 'Francie', 'GB': 'Spojené království', 'GR': 'Řecko', 'H': 'Maďarsko', 'IRL': 'Irsko', 'I': 'Itálie',
       'LV': 'Lotyšsko', 'LT': 'Litva', 'L': 'Lucembursko', 'M': 'Malta', 'NL': 'Nizozemsko',
       'PL': 'Polsko', 'P': 'Portugalsko', 'RO': 'Rumunsko', 'SK': 'Slovensko', 'SLO': 'Slovinsko',
-      'E': 'Španělsko', 'N': 'Norsko', 'S': 'Švédsko', 'FL': 'Lichtenštejnsko',
+      'E': 'Španělsko', 'N': 'Norsko', 'S': 'Švédsko', 'FL': 'Lichtenštejnsko', 'TR': 'Turecko',
     },
   },
   hr: {
@@ -771,9 +773,95 @@ const translations: Record<Language, Translations> = {
       'F': 'Francuska', 'GB': 'Ujedinjeno Kraljevstvo', 'GR': 'Grčka', 'H': 'Mađarska', 'IRL': 'Irska', 'I': 'Italija',
       'LV': 'Latvija', 'LT': 'Litva', 'L': 'Luksemburg', 'M': 'Malta', 'NL': 'Nizozemska',
       'PL': 'Poljska', 'P': 'Portugal', 'RO': 'Rumunjska', 'SK': 'Slovačka', 'SLO': 'Slovenija',
-      'E': 'Spanjolska', 'N': 'Norveška', 'S': 'Švedska', 'FL': 'Lihtenštajn',
+      'E': 'Spanjolska', 'N': 'Norveška', 'S': 'Švedska', 'FL': 'Lihtenštajn', 'TR': 'Turska',
     },
   },
+  tr: {
+  pageTitle: 'Plaka Oluşturucu',
+  configureTitle: 'Plaka Yapılandır',
+  previewTitle: 'Önizleme',
+  country: 'Ülke',
+  cityCode: 'Şehir Kodu',
+  letters: 'Harfler',
+  numbers: 'Rakamlar',
+  suffix: 'Ek',
+  state: 'Eyalet',
+  city: 'Şehir',
+  plateWidth: 'Genişlik',
+  plateStyle: 'Stil',
+  plateType: 'Plaka Türü',
+  huYear: 'Muayene Yılı',
+  huMonth: 'Muayene Ayı',
+  showStatePlakette: 'Eyalet Amblemini Göster',
+  showHUPlakette: 'Muayene Etiketini Göster',
+  plateText: 'Plaka Metni',
+  fontColor: 'Yazı Rengi',
+  backgroundColor: 'Arka Plan Rengi',
+  rightBandText: 'Bölge / Kod',
+  danishOptions: 'Danimarka Plakası',
+  danishStyle: 'Stil',
+  danishClassic: 'Klasik (AB şeridi yok)',
+  danishEuro: 'Euro plaka (AB şeritli)',
+  danishPlateType: 'Plaka Ölçüsü',
+  danishType1: 'Tip 1 – 504×120 mm',
+  danishType3: 'Tip 3/5 – 240×165 mm',
+  widthStandard: 'Standart (520 mm)',
+  widthCompact: 'Kompakt',
+  styleNormal: 'Normal (beyaz)',
+  styleAcrylic: 'Akrilik (parlak)',
+  style3DBlack: '3D Siyah parlak',
+  style3DCarbon: '3D Karbon parlak',
+  style3DBlackMatte: '3D Siyah mat',
+  style3DCarbonMatte: '3D Karbon mat',
+  plateTypeNormal: 'Standart',
+  plateTypePersonalized: 'Kişiselleştirilmiş',
+  lettersAndNumbers: 'Harfler ve Rakamlar',
+  personalizedText: 'Özel Metin',
+  exportPNG: 'PNG olarak dışa aktar',
+  exportFailed: 'Dışa aktarma başarısız oldu. Lütfen tekrar deneyin.',
+  firefoxWarning: 'Firefox kullanıyorsunuz: Bazı görseller (ör. armalar) dışa aktarılamayabilir. En iyi sonuç için Chrome, Safari veya Edge kullanın.',
+  wappenAttribution: 'Amblemler: Wikimedia Commons (Public Domain / CC)',
+  usbInstallTitle: 'Tesla’ya nasıl eklerim?',
+  usbInstallStep1: 'USB bellekte "LicensePlate" adında bir klasör oluşturun.',
+  usbInstallStep2: 'Klasöre en fazla 10 adet özel PNG arka plan görseli ekleyin. Her görsel 0.5 MB’tan küçük olmalıdır. Dosya adı yalnızca harf ve rakamlardan oluşmalı ve 32 karakterden kısa olmalıdır.',
+  usbInstallStep3: 'Önerilen çözünürlük 420 × 100 pikseldir. Maksimum çözünürlük 420 × 200 pikseldir.',
+  usbInstallStep4: 'Hazırladığınız USB belleği aracın USB girişine takın ve Arka Plan → Görsel yolunu izleyin. Dosyalar gereksinimleri karşılıyorsa menüden seçilebilir olacaktır.',
+  months: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+  countries: {
+    'D': 'Almanya',
+    'A': 'Avusturya',
+    'B': 'Belçika',
+    'BG': 'Bulgaristan',
+    'CH': 'İsviçre',
+    'HR': 'Hırvatistan',
+    'CY': 'Kıbrıs',
+    'CZ': 'Çekya',
+    'DK': 'Danimarka',
+    'EST': 'Estonya',
+    'FIN': 'Finlandiya',
+    'F': 'Fransa',
+    'GB': 'Birleşik Krallık',
+    'GR': 'Yunanistan',
+    'H': 'Macaristan',
+    'IRL': 'İrlanda',
+    'I': 'İtalya',
+    'LV': 'Letonya',
+    'LT': 'Litvanya',
+    'L': 'Lüksemburg',
+    'M': 'Malta',
+    'NL': 'Hollanda',
+    'PL': 'Polonya',
+    'P': 'Portekiz',
+    'RO': 'Romanya',
+    'SK': 'Slovakya',
+    'SLO': 'Slovenya',
+    'E': 'İspanya',
+    'N': 'Norveç',
+    'S': 'İsveç',
+    'FL': 'Lihtenştayn',
+    'TR': 'Türkiye'
+  }
+},
 };
 
 export function getTranslations(lang: Language): Translations {

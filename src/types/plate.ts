@@ -21,7 +21,7 @@ export const PLATE_STYLE_NAMES: Record<PlateStyle, string> = {
 };
 
 // EU Countries + Switzerland + UK
-export type Country = 
+export type Country =
   | 'D'   // Germany
   | 'A'   // Austria
   | 'B'   // Belgium
@@ -52,7 +52,8 @@ export type Country =
   | 'E'   // Spain
   | 'N'   // Norway
   | 'S'   // Sweden
-  | 'FL'; // Liechtenstein
+  | 'FL'  // Liechtenstein
+  | 'TR'; // Turkey
 
 export const EU_COUNTRY_NAMES: Record<Country, string> = {
   'D': 'Deutschland',
@@ -86,6 +87,7 @@ export const EU_COUNTRY_NAMES: Record<Country, string> = {
   'N': 'Norwegen',
   'S': 'Schweden',
   'FL': 'Liechtenstein',
+  'TR': 'Türkei',
 };
 
 export interface PlateConfig {
@@ -102,7 +104,7 @@ export interface PlateConfig {
   isEV: boolean;           // Electric vehicle - green band for UK
   danishVariant: DanishVariant; // Classic (no EU strip) or Euroband
   danishPlateType: DanishPlateType; // Plate shape for Denmark (Type 1 vs. Type 3/5)
-  
+
   // German-specific settings
   cityCode: string;        // e.g., "M", "B", "HH" or "Y" for military (auto-detected)
   letters: string;         // e.g., "AB" (empty for military Y plates)
