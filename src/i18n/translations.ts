@@ -94,7 +94,6 @@ export interface Translations {
   
   // Messages
   exportFailed: string;
-  firefoxWarning: string;
   
   // Footer
   wappenAttribution: string;
@@ -157,7 +156,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Personalisierter Text',
     exportPNG: 'Als PNG exportieren',
     exportFailed: 'Export fehlgeschlagen. Bitte versuche es erneut.',
-    firefoxWarning: 'Du nutzt Firefox: Einige Bilder (z.B. Wappen) werden möglicherweise nicht exportiert. Für beste Ergebnisse Chrome, Safari oder Edge verwenden.',
     wappenAttribution: 'Wappen: Wikimedia Commons (Public Domain / CC)',
     usbInstallTitle: 'Wie füge ich es dem Tesla hinzu?',
     usbInstallStep1: 'Erstellen Sie auf dem USB-Stick einen Ordner mit dem Namen "LicensePlate".',
@@ -217,7 +215,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Personalized Text',
     exportPNG: 'Export as PNG',
     exportFailed: 'Export failed. Please try again.',
-    firefoxWarning: 'You are using Firefox: Some images (e.g. coat of arms) may not be exported. For best results, use Chrome, Safari, or Edge.',
     wappenAttribution: 'Emblems: Wikimedia Commons (Public Domain / CC)',
     usbInstallTitle: 'How do I add it to my Tesla?',
     usbInstallStep1: 'Create a folder named "LicensePlate" on the USB drive.',
@@ -277,7 +274,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Texte personnalisé',
     exportPNG: 'Exporter en PNG',
     exportFailed: 'Échec de l\'export. Veuillez réessayer.',
-    firefoxWarning: 'Vous utilisez Firefox : Certaines images (armoiries) peuvent ne pas être exportées. Pour de meilleurs résultats, utilisez Chrome, Safari ou Edge.',
     wappenAttribution: 'Emblèmes: Wikimedia Commons (Domaine public / CC)',
     usbInstallTitle: 'Comment l\'ajouter à ma Tesla ?',
     usbInstallStep1: 'Créez un dossier nommé "LicensePlate" sur la clé USB.',
@@ -337,7 +333,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Texto personalizado',
     exportPNG: 'Exportar como PNG',
     exportFailed: 'Error al exportar. Por favor, inténtalo de nuevo.',
-    firefoxWarning: 'Estás usando Firefox: Algunas imágenes (escudos) pueden no exportarse. Para mejores resultados, usa Chrome, Safari o Edge.',
     wappenAttribution: 'Emblemas: Wikimedia Commons (Dominio público / CC)',
     usbInstallTitle: '¿Cómo lo añado a mi Tesla?',
     usbInstallStep1: 'Cree una carpeta llamada "LicensePlate" en la unidad USB.',
@@ -397,7 +392,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Testo personalizzato',
     exportPNG: 'Esporta come PNG',
     exportFailed: 'Esportazione fallita. Riprova.',
-    firefoxWarning: 'Stai usando Firefox: Alcune immagini (stemmi) potrebbero non essere esportate. Per risultati migliori, usa Chrome, Safari o Edge.',
     wappenAttribution: 'Stemmi: Wikimedia Commons (Pubblico dominio / CC)',
     usbInstallTitle: 'Come lo aggiungo alla mia Tesla?',
     usbInstallStep1: 'Creare una cartella denominata "LicensePlate" sull\'unità USB.',
@@ -457,7 +451,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Gepersonaliseerde tekst',
     exportPNG: 'Exporteren als PNG',
     exportFailed: 'Export mislukt. Probeer het opnieuw.',
-    firefoxWarning: 'Je gebruikt Firefox: Sommige afbeeldingen (wapens) worden mogelijk niet geëxporteerd. Gebruik Chrome, Safari of Edge voor het beste resultaat.',
     wappenAttribution: 'Emblemen: Wikimedia Commons (Publiek domein / CC)',
     usbInstallTitle: 'Hoe voeg ik het toe aan mijn Tesla?',
     usbInstallStep1: 'Maak een map met de naam "LicensePlate" op de USB-stick.',
@@ -517,7 +510,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Spersonalizowany tekst',
     exportPNG: 'Eksportuj jako PNG',
     exportFailed: 'Eksport nie powiódł się. Spróbuj ponownie.',
-    firefoxWarning: 'Używasz Firefox: Niektóre obrazy (herby) mogą nie zostać wyeksportowane. Dla najlepszych wyników użyj Chrome, Safari lub Edge.',
     wappenAttribution: 'Godła: Wikimedia Commons (Domena publiczna / CC)',
     usbInstallTitle: 'Jak dodać to do mojej Tesli?',
     usbInstallStep1: 'Utwórz folder o nazwie "LicensePlate" na pendrive USB.',
@@ -577,7 +569,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Texto personalizado',
     exportPNG: 'Exportar como PNG',
     exportFailed: 'Falha na exportação. Tente novamente.',
-    firefoxWarning: 'Você está usando o Firefox: Algumas imagens (brasões) podem não ser exportadas. Para melhores resultados, use Chrome, Safari ou Edge.',
     wappenAttribution: 'Emblemas: Wikimedia Commons (Domínio público / CC)',
     usbInstallTitle: 'Como adiciono ao meu Tesla?',
     usbInstallStep1: 'Crie uma pasta chamada "LicensePlate" na unidade USB.',
@@ -637,7 +628,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Personlig text',
     exportPNG: 'Exportera som PNG',
     exportFailed: 'Export misslyckades. Försök igen.',
-    firefoxWarning: 'Du använder Firefox: Vissa bilder (t.ex. vapensköldar) kanske inte exporteras. För bästa resultat, använd Chrome, Safari eller Edge.',
     wappenAttribution: 'Emblem: Wikimedia Commons (Public Domain / CC)',
     usbInstallTitle: 'Hur lägger jag till den i min Tesla?',
     usbInstallStep1: 'Skapa en mapp med namnet "LicensePlate" på USB-enheten.',
@@ -697,7 +687,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Osobní text',
     exportPNG: 'Exportovat jako PNG',
     exportFailed: 'Export selhal. Zkuste to znovu.',
-    firefoxWarning: 'Používáte Firefox: Některé obrázky (znaky) nemusí být exportovány. Pro nejlepší výsledky použijte Chrome, Safari nebo Edge.',
     wappenAttribution: 'Znaky: Wikimedia Commons (Public Domain / CC)',
     usbInstallTitle: 'Jak to přidám do své Tesly?',
     usbInstallStep1: 'Vytvořte složku s názvem "LicensePlate" na USB disku.',
@@ -757,7 +746,6 @@ const translations: Record<Language, Translations> = {
     personalizedText: 'Personalizirani Tekst',
     exportPNG: 'Spremi kao PNG',
     exportFailed: 'Spremanje neuspješno. Pokušajte ponovo.',
-    firefoxWarning: 'Koristite Firefox: Neke slike (grbovi) možda se neće izvesti. Za najbolje rezultate koristite Chrome, Safari ili Edge.',
     wappenAttribution: 'Grb: Wikimedia Commons (Public Domain / CC)',
     usbInstallTitle: 'Kako dodati u Teslu?',
     usbInstallStep1: 'Napravite mapu na USB-u pod nazivom "LicensePlate".',

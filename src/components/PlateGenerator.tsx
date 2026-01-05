@@ -313,9 +313,6 @@ export default function PlateGenerator() {
     setConfig(prev => ({ ...prev, [field]: value }));
   }, []);
 
-  // Detect Firefox browser
-  const isFirefox = typeof navigator !== 'undefined' && navigator.userAgent.toLowerCase().includes('firefox');
-
   const exportAsPNG = useCallback(async () => {
     if (!plateRef.current) return;
 
@@ -1251,14 +1248,6 @@ export default function PlateGenerator() {
           <p className="mt-3 text-sm text-white/70">
             Export: 420 × dynamisch px
           </p>
-          {isFirefox && (
-            <div className="mt-4 p-3 bg-orange-500/20 border border-orange-400/50 rounded-xl max-w-md mx-auto">
-              <p className="text-sm text-orange-200 flex items-start gap-2">
-                <span className="text-lg">⚠️</span>
-                <span>{t.firefoxWarning}</span>
-              </p>
-            </div>
-          )}
         </div>
 
         {/* USB Installation Guide */}
