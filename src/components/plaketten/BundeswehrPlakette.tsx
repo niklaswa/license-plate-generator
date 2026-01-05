@@ -26,7 +26,6 @@ const BundeswehrPlakette: React.FC<BundeswehrPlaketteProps> = ({ scale = 1, isHo
   return (
     <div
       style={{
-        position: 'relative',
         width: `${size}px`,
         height: `${size}px`,
         flexShrink: 0,

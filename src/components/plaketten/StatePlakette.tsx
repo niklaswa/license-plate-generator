@@ -69,7 +69,6 @@ export default function StatePlakette({ state, city = '', scale = 1, isHovering 
   return (
     <div
       style={{
-        position: 'relative',
         width: `${size}px`,
         height: `${size}px`,
         flexShrink: 0,
